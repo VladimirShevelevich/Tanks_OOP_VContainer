@@ -1,8 +1,5 @@
-﻿using System;
-using Content;
-using Game.Level;
+﻿using Game.Level;
 using Game.Level.Config;
-using R3;
 using VContainer;
 using VContainer.Unity;
 

@@ -1,7 +1,6 @@
 ﻿using System;
-using R3;
+using UniRx;
 using UnityEngine;
-using VContainer.Unity;
 
 namespace Player
 {
@@ -18,7 +17,7 @@ namespace Player
         
         public void Initialize()
         {
-            Observable.EveryUpdate(frameprovider).Subscribe(_ => Update()).
+            Observable.EveryUpdate().Subscribe(_ => Update()).
                 AddTo(_disposable);
         }
 
