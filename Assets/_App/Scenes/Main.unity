@@ -155,6 +155,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _contentProvider: {fileID: 11400000, guid: 68e6715c7522fcc479bec597a87373c8, type: 2}
 --- !u!4 &328039367
 Transform:
   m_ObjectHideFlags: 0

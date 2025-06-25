@@ -1,5 +1,6 @@
-﻿using Game.Level;
-using R3;
+﻿using Content;
+using Game.Level;
+using VContainer;
 using VContainer.Unity;
 
 namespace Game
@@ -7,10 +8,13 @@ namespace Game
     public class LevelLoader : IInitializable
     {
         private readonly LifetimeScope _gameScope;
+        private LevelScope _levelScope;
+        private readonly ContentProvider _contentProvider;
 
-        public LevelLoader(LifetimeScope lifetimeScope)
+        public LevelLoader(LifetimeScope lifetimeScope, ContentProvider contentProvider)
         {
             _gameScope = lifetimeScope;
+            _contentProvider = contentProvider;
         }
         
         public void Initialize()
@@ -20,8 +24,10 @@ namespace Game
 
         private void CreateLevelScope()
         {
-            var levelScope = _gameScope.CreateChild<LevelScope>();
-            //levelScope.Dispose();
+            _levelScope = _gameScope.CreateChild<LevelScope>(builder =>
+            {
+                builder.RegisterInstance(_contentProvider.Levels[0]);
+            });
         }
     }
 }
