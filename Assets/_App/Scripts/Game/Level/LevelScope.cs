@@ -1,5 +1,6 @@
 ﻿using Game.Level.Config;
 using Game.Level.Environment;
+using Player;
 using VContainer;
 using VContainer.Unity;
 
@@ -11,6 +12,7 @@ namespace Game.Level
         
         protected override void Configure(IContainerBuilder builder)
         {
+            PlayerInstaller.Install(builder);
             builder.UseEntryPoints(epBuilder =>
             {
                 epBuilder.Add<EnvironmentPresenter>();

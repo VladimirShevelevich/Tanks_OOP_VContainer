@@ -11,8 +11,14 @@ namespace Game
         
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_contentProvider);
+            RegisterContent(builder);
             builder.RegisterEntryPoint<LevelLoader>();
+        }
+
+        private void RegisterContent(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_contentProvider.Levels);
+            builder.RegisterInstance(_contentProvider.PlayerContent);
         }
     }
 }

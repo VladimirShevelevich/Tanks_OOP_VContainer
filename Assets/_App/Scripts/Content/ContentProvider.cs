@@ -1,4 +1,5 @@
 ﻿using Game.Level.Config;
+using Player;
 using UnityEngine;
 
 namespace Content
@@ -7,5 +8,6 @@ namespace Content
     public class ContentProvider : ScriptableObject
     {
         [field: SerializeField] public LevelConfig[] Levels { get; private set; }
+        [field: SerializeField] public PlayerContent PlayerContent { get; private set; }
     }
 }
