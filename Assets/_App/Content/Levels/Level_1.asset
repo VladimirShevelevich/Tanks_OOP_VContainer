@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5791f66f6e5d426a938b9285a09af9a6, type: 3}
   m_Name: Level_1
   m_EditorClassIdentifier: 
+  EnvironmentViewPrefab: {fileID: 2126349248214622855, guid: 9dcbcc31add2670449d12d748573dd9e, type: 3}
