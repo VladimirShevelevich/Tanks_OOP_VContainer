@@ -30,9 +30,10 @@ namespace Player
         {
             var horizontalInput = Input.GetAxis("Horizontal");
             var verticalInput = Input.GetAxis("Vertical");
-
-            _playerView.Move(horizontalInput * _playerContent.Speed * Time.deltaTime);
             
+            _playerView.Rotate(horizontalInput * _playerContent.RotationSpeed * Time.deltaTime);
+            _playerView.Move(verticalInput * _playerContent.Speed * Time.deltaTime);
+
             // Rotate character
             //transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
 

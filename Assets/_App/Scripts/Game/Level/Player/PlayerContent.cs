@@ -7,5 +7,6 @@ namespace Player
     {
         [field: SerializeField] public PlayerView ViewPrefab { get; private set; }
         [field: SerializeField] public float Speed { get; set; }
+        [field: SerializeField] public float RotationSpeed { get; set; }
     }
 }

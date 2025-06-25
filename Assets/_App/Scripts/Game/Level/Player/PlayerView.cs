@@ -10,5 +10,10 @@ namespace Player
         {
             _characterController.Move(transform.forward * movement);
         }
+
+        public void Rotate(float rotation)
+        {
+            transform.Rotate(Vector3.up, rotation);
+        }
     }
 }
