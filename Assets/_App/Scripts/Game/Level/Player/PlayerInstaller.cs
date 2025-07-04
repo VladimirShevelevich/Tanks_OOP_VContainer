@@ -12,7 +12,9 @@ namespace Player
                 epBuilder.Add<PlayerService>();
             });
 
+            builder.Register<PlayerFactory>(Lifetime.Scoped);
             builder.Register<PlayerMover>(Lifetime.Scoped);
+            builder.Register<PlayerShooter>(Lifetime.Scoped);
         }
     }
 }

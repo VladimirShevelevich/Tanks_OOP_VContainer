@@ -1,19 +1,21 @@
 ﻿using Game.Level;
 using Game.Level.Config;
+using JetBrains.Annotations;
 using VContainer;
 using VContainer.Unity;
 
 namespace Game
 {
-    public class LevelLoader : IInitializable
+    [UsedImplicitly]
+    public class LevelCreator : IInitializable
     {
         private readonly LifetimeScope _gameScope;
         private LevelScope _levelScope;
         private readonly LevelConfig[] _levels;
 
-        public LevelLoader(LifetimeScope lifetimeScope, LevelConfig[] levels)
+        public LevelCreator(LifetimeScope gameScope, LevelConfig[] levels)
         {
-            _gameScope = lifetimeScope;
+            _gameScope = gameScope;
             _levels = levels;
         }
         
@@ -24,10 +26,13 @@ namespace Game
 
         private void CreateLevelScope()
         {
-            _levelScope = _gameScope.CreateChild<LevelScope>(builder =>
-            {
-                builder.RegisterInstance(_levels[0]);
-            });
+            _levelScope = _gameScope.CreateChild<LevelScope>(
+                RegisterLevelConfig);
+        }
+
+        private void RegisterLevelConfig(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_levels[0]);
         }
     }
 }

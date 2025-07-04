@@ -1,10 +1,13 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UniRx;
 using UnityEngine;
+using VContainer.Unity;
 
 namespace Player
 {
-    public class PlayerMover : IDisposable
+    [UsedImplicitly]
+    public class PlayerMover : IDisposable, ITickable
     {
         private PlayerView _playerView;
         private readonly CompositeDisposable _disposable = new();
@@ -25,7 +28,12 @@ namespace Player
         {
             _playerView = playerView;
         }
-        
+
+        public void Tick()
+        {
+            throw new NotImplementedException();
+        }
+
         void Update()
         {
             var horizontalInput = Input.GetAxis("Horizontal");
@@ -33,14 +41,6 @@ namespace Player
             
             _playerView.Rotate(horizontalInput * _playerContent.RotationSpeed * Time.deltaTime);
             _playerView.Move(verticalInput * _playerContent.Speed * Time.deltaTime);
-
-            // Rotate character
-            //transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
-
-            // Move character
-            //Vector3 moveDirection = transform.forward * verticalInput * speed;
-        
-            //characterController.SimpleMove(moveDirection);
         }
 
 

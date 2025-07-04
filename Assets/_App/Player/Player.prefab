@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 5280323459375995792}
+  _projectileSpawnPoint: {fileID: 2912558884025880959}
 --- !u!143 &5280323459375995792
 CharacterController:
   m_ObjectHideFlags: 0
@@ -133,5 +134,10 @@ PrefabInstance:
 --- !u!4 &2091079825105550711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3011469963919986407, guid: dc84a58afe1344547a230a5cb3c072c8, type: 3}
+  m_PrefabInstance: {fileID: 3805508698023097232}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2912558884025880959 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2063947290855744239, guid: dc84a58afe1344547a230a5cb3c072c8, type: 3}
   m_PrefabInstance: {fileID: 3805508698023097232}
   m_PrefabAsset: {fileID: 0}

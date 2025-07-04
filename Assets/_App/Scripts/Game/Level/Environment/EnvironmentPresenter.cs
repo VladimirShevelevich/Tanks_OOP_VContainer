@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Level.Config;
+using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
 using VContainer.Unity;
@@ -7,6 +8,7 @@ using Object = UnityEngine.Object;
 
 namespace Game.Level.Environment
 {
+    [UsedImplicitly]
     public class EnvironmentPresenter : IInitializable, IDisposable
     {
         private readonly LevelConfig _levelConfig;

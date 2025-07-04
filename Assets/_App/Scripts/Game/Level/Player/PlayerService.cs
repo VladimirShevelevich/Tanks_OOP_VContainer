@@ -1,37 +1,21 @@
-﻿using Tools.Disposable;
-using UniRx;
-using UnityEngine;
-using VContainer;
+﻿using JetBrains.Annotations;
 using VContainer.Unity;
 
 namespace Player
 {
+    [UsedImplicitly]
     public class PlayerService : IInitializable
     {
-        private readonly PlayerContent _playerContent;
-        private readonly CompositeDisposable _disposable = new();
-        private readonly IObjectResolver _objectResolver;
+        private readonly PlayerFactory _playerFactory;
 
-        public PlayerService(PlayerContent playerContent, IObjectResolver objectResolver)
+        public PlayerService(PlayerFactory playerFactory)
         {
-            _playerContent = playerContent;
-            _objectResolver = objectResolver;
+            _playerFactory = playerFactory;
         }
         
         public void Initialize()
         {
-            var view = CreateView();
-            var mover = _objectResolver.Resolve<PlayerMover>();
-            mover.BindView(view);
-            mover.Initialize();
-            mover.AddTo(_disposable);
-        }
-
-        private PlayerView CreateView()
-        {
-            var view = Object.Instantiate(_playerContent.ViewPrefab);
-            _disposable.Add(new GameObjectDisposer(view.gameObject));
-            return view;
+            _playerFactory.CreatePlayer();
         }
     }
 }
