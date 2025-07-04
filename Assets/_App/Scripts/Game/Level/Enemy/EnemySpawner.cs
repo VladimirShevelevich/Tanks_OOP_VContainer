@@ -15,7 +15,10 @@ namespace Game.Level.Enemy
         
         public void Initialize()
         {
-            var enemy = _enemyFactory.Create(EnemyContent.EnemyType.Static);
+            var enemy = _enemyFactory.Create(EnemyContent.EnemyType.Patrol);
+            enemy.Init();            
+            
+            enemy = _enemyFactory.Create(EnemyContent.EnemyType.Static);
             enemy.Init();
         }
     }

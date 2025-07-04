@@ -15,7 +15,8 @@ namespace Game.Level.Enemy
         [Serializable]
         public class MovementContent
         {
-            
+            [field: SerializeField] public float PatrolRange { get; private set; }
+            [field: SerializeField] public float Speed { get; private set; }
         }
 
         [field: SerializeField] public EnemyView ViewPrefab { get; private set; }
