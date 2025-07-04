@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Player.Projectile
+namespace Game.Level.Player.Projectile
 {
     public class ProjectileView : MonoBehaviour
     {

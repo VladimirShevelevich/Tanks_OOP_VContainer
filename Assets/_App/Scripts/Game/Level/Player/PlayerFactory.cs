@@ -3,7 +3,7 @@ using Tools.Disposable;
 using UnityEngine;
 using VContainer;
 
-namespace Player
+namespace Game.Level.Player
 {
     [UsedImplicitly]
     public class PlayerFactory : BaseDisposable
@@ -28,7 +28,6 @@ namespace Player
         {
             var shootingController = _objectResolver.Resolve<PlayerShooter>();
             shootingController.BindView(view);
-            shootingController.Initialize();
             AddDisposable(shootingController);
         }
 
@@ -36,7 +35,6 @@ namespace Player
         {
             var mover = _objectResolver.Resolve<PlayerMover>();
             mover.BindView(view);
-            mover.Initialize();
             AddDisposable(mover);
         }
 

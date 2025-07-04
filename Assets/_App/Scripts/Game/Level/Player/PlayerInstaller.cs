@@ -1,7 +1,7 @@
 ﻿using VContainer;
 using VContainer.Unity;
 
-namespace Player
+namespace Game.Level.Player
 {
     public static class PlayerInstaller
     {
@@ -10,11 +10,11 @@ namespace Player
             builder.UseEntryPoints(epBuilder =>
             {
                 epBuilder.Add<PlayerService>();
+                epBuilder.Add<PlayerMover>().AsSelf();
+                epBuilder.Add<PlayerShooter>().AsSelf();
             });
 
             builder.Register<PlayerFactory>(Lifetime.Scoped);
-            builder.Register<PlayerMover>(Lifetime.Scoped);
-            builder.Register<PlayerShooter>(Lifetime.Scoped);
         }
     }
 }

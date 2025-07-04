@@ -1,5 +1,5 @@
 ﻿using Game.Level.Config;
-using Player;
+using Game.Level.Player;
 using UnityEngine;
 
 namespace Content

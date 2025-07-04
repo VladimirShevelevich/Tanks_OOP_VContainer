@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using VContainer.Unity;
 
-namespace Player
+namespace Game.Level.Player
 {
     [UsedImplicitly]
     public class PlayerService : IInitializable

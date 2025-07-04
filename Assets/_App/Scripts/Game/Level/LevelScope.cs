@@ -1,6 +1,6 @@
 ﻿using Game.Level.Config;
 using Game.Level.Environment;
-using Player;
+using Game.Level.Player;
 using VContainer;
 using VContainer.Unity;
 

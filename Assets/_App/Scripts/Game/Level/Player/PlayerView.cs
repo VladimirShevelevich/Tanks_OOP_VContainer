@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Player
+namespace Game.Level.Player
 {
     public class PlayerView : MonoBehaviour
     {

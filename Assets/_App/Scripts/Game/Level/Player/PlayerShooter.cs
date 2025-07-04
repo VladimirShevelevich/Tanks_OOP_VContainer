@@ -1,26 +1,23 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UniRx;
 using UnityEngine;
+using VContainer.Unity;
 
-namespace Player
+namespace Game.Level.Player
 {
-    public class PlayerShooter : IDisposable
+    [UsedImplicitly]
+    public class PlayerShooter : IDisposable, ITickable
     {
         private PlayerView _playerView;
         private readonly CompositeDisposable _disposable = new();
         
-        public void Initialize()
-        {
-            Observable.EveryUpdate().Subscribe(_ => Update()).
-                AddTo(_disposable);
-        }
-
         public void BindView(PlayerView playerView)
         {
             _playerView = playerView;
         }
         
-        void Update()
+        public void Tick()
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 _playerView.Shoot();

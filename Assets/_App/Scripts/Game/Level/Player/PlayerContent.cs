@@ -1,7 +1,7 @@
-﻿using Player.Projectile;
+﻿using Game.Level.Player.Projectile;
 using UnityEngine;
 
-namespace Player
+namespace Game.Level.Player
 {
     [CreateAssetMenu(fileName = "PlayerContent", menuName = "Content/Player")]
     public class PlayerContent : ScriptableObject

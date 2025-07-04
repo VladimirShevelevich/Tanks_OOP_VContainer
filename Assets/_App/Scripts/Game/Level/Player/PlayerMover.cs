@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace Player
+namespace Game.Level.Player
 {
     [UsedImplicitly]
     public class PlayerMover : IDisposable, ITickable
@@ -17,12 +17,6 @@ namespace Player
         {
             _playerContent = playerContent;
         }
-        
-        public void Initialize()
-        {
-            Observable.EveryUpdate().Subscribe(_ => Update()).
-                AddTo(_disposable);
-        }
 
         public void BindView(PlayerView playerView)
         {
@@ -31,18 +25,12 @@ namespace Player
 
         public void Tick()
         {
-            throw new NotImplementedException();
-        }
-
-        void Update()
-        {
             var horizontalInput = Input.GetAxis("Horizontal");
             var verticalInput = Input.GetAxis("Vertical");
             
             _playerView.Rotate(horizontalInput * _playerContent.RotationSpeed * Time.deltaTime);
             _playerView.Move(verticalInput * _playerContent.Speed * Time.deltaTime);
         }
-
 
         public void Dispose()
         {
