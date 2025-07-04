@@ -41,7 +41,6 @@ namespace Game.Level.Player
         private PlayerView CreateView()
         {
             var view = Object.Instantiate(_playerContent.ViewPrefab);
-            view.BindPlayerContent(_playerContent);
             AddDisposable(new GameObjectDisposer(view.gameObject));
             return view;
         }

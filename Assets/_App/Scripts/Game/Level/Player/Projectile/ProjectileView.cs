@@ -4,9 +4,16 @@ namespace Game.Level.Player.Projectile
 {
     public class ProjectileView : MonoBehaviour
     {
+        private float _speed;
+
+        public void Init(float speed)
+        {
+            _speed = speed;
+        }
+        
         private void Update()
         {
-            transform.Translate(transform.forward * Time.deltaTime * 10);
+            transform.position += transform.forward * Time.deltaTime * _speed;
         }
     }
 }
