@@ -20,6 +20,7 @@ namespace Game
             builder.RegisterInstance(_contentProvider.Levels);
             builder.RegisterInstance(_contentProvider.PlayerContent);
             builder.RegisterInstance(_contentProvider.ProjectileContent);
+            builder.RegisterInstance(_contentProvider.EnemyContent);
         }
     }
 }
