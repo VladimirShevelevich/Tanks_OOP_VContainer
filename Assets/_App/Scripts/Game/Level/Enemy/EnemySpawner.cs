@@ -1,10 +1,11 @@
 ﻿using JetBrains.Annotations;
+using Tools.Disposable;
 using VContainer.Unity;
 
 namespace Game.Level.Enemy
 {
     [UsedImplicitly]
-    public class EnemySpawner : IInitializable
+    public class EnemySpawner : BaseDisposable, IInitializable
     {
         private readonly EnemyFactory _enemyFactory;
 
@@ -15,10 +16,10 @@ namespace Game.Level.Enemy
         
         public void Initialize()
         {
-            var enemy = _enemyFactory.Create(EnemyContent.EnemyType.Patrol);
-            enemy.Init();            
+            var enemy = _enemyFactory.Create(EnemyContent.EnemyType.Static);
+            enemy.Init();
             
-            enemy = _enemyFactory.Create(EnemyContent.EnemyType.Static);
+            enemy = _enemyFactory.Create(EnemyContent.EnemyType.Patrol);
             enemy.Init();
         }
     }

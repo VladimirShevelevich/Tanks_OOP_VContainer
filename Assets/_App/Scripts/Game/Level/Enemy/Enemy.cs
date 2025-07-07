@@ -1,27 +1,31 @@
-﻿using Game.Level.Enemy.Mover;
-using JetBrains.Annotations;
-using Tools.Disposable;
+﻿using Tools.Disposable;
 
 namespace Game.Level.Enemy
 {
-    [UsedImplicitly]
-    public class Enemy
+    public class Enemy : BaseDisposable
     {
-        private IEnemyMover _enemyMover;
+        private readonly EnemyViewFactory _enemyViewFactory;
+        private EnemyContent.EnemyType _enemyType;
 
-        public Enemy()
+        public Enemy(EnemyViewFactory enemyViewFactory)
         {
-            
+            _enemyViewFactory = enemyViewFactory;
         }
-        
+
+        public void SetType(EnemyContent.EnemyType enemyType)
+        {
+            _enemyType = enemyType;
+        }
+
         public void Init()
         {
-            _enemyMover.Init();
+            CreateView();
         }
 
-        public void SetMover(IEnemyMover mover)
+        private void CreateView()
         {
-            _enemyMover = mover;
+            var enemy = _enemyViewFactory.Create(_enemyType);
+            AddDisposable(new GameObjectDisposer(enemy.gameObject));
         }
     }
 }

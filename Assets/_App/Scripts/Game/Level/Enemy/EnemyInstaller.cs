@@ -1,5 +1,4 @@
-﻿using Game.Level.Enemy.Mover;
-using VContainer;
+﻿using VContainer;
 using VContainer.Unity;
 
 namespace Game.Level.Enemy
@@ -14,15 +13,9 @@ namespace Game.Level.Enemy
             });
 
             builder.Register<EnemyFactory>(Lifetime.Scoped);
+            builder.Register<EnemyViewFactory>(Lifetime.Scoped);
+            
             builder.Register<Enemy>(Lifetime.Transient);
-
-            RegisterMovers(builder);
-        }
-
-        private static void RegisterMovers(IContainerBuilder builder)
-        {
-            builder.Register<EnemyStaticMover>(Lifetime.Transient);
-            builder.Register<EnemyPatrolMover>(Lifetime.Transient);
         }
     }
 }

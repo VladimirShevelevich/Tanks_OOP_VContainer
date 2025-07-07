@@ -19,7 +19,7 @@ namespace Game.Level.Enemy
             [field: SerializeField] public float Speed { get; private set; }
         }
 
-        [field: SerializeField] public EnemyView ViewPrefab { get; private set; }
+        [field: SerializeField] public GameObject ViewPrefab { get; private set; }
         [field: SerializeField] public MovementContent Movement { get; private set; }
     }
 }
