@@ -1,7 +1,9 @@
-﻿using Tools.Disposable;
+﻿using JetBrains.Annotations;
+using Tools.Disposable;
 
 namespace Game.Level.Enemy
 {
+    [UsedImplicitly]
     public class Enemy : BaseDisposable
     {
         private readonly EnemyViewFactory _enemyViewFactory;

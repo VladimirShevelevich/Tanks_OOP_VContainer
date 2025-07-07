@@ -1,10 +1,11 @@
 ﻿using JetBrains.Annotations;
+using Tools.Disposable;
 using VContainer.Unity;
 
 namespace Game.Level.Player
 {
     [UsedImplicitly]
-    public class PlayerService : IInitializable
+    public class PlayerService : BaseDisposable, IInitializable
     {
         private readonly PlayerFactory _playerFactory;
 
@@ -15,7 +16,9 @@ namespace Game.Level.Player
         
         public void Initialize()
         {
-            _playerFactory.CreatePlayer();
+           var player = _playerFactory.CreatePlayer();
+           player.Init();
+           AddDisposable(player);
         }
     }
 }

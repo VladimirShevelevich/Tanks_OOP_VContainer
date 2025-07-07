@@ -10,11 +10,12 @@ namespace Game.Level.Player
             builder.UseEntryPoints(epBuilder =>
             {
                 epBuilder.Add<PlayerService>();
-                epBuilder.Add<PlayerMover>().AsSelf();
-                epBuilder.Add<PlayerShooter>().AsSelf();
             });
 
             builder.Register<PlayerFactory>(Lifetime.Scoped);
+            builder.Register<PlayerViewFactory>(Lifetime.Scoped);
+            
+            builder.Register<Player>(Lifetime.Transient);
         }
     }
 }

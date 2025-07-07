@@ -1,48 +1,21 @@
 ﻿using JetBrains.Annotations;
-using Tools.Disposable;
-using UnityEngine;
 using VContainer;
 
 namespace Game.Level.Player
 {
     [UsedImplicitly]
-    public class PlayerFactory : BaseDisposable
+    public class PlayerFactory
     {
-        private readonly PlayerContent _playerContent;
         private readonly IObjectResolver _objectResolver;
 
-        public PlayerFactory(PlayerContent playerContent, IObjectResolver objectResolver)
+        public PlayerFactory(IObjectResolver objectResolver)
         {
-            _playerContent = playerContent;
             _objectResolver = objectResolver;
         }
-        
-        public void CreatePlayer()
-        {
-            var view = CreateView();
-            CreateMover(view);
-            CreateShooter(view);
-        }
 
-        private void CreateShooter(PlayerView view)
+        public Player CreatePlayer()
         {
-            var shootingController = _objectResolver.Resolve<PlayerShooter>();
-            shootingController.BindView(view);
-            AddDisposable(shootingController);
-        }
-
-        private void CreateMover(PlayerView view)
-        {
-            var mover = _objectResolver.Resolve<PlayerMover>();
-            mover.BindView(view);
-            AddDisposable(mover);
-        }
-
-        private PlayerView CreateView()
-        {
-            var view = Object.Instantiate(_playerContent.ViewPrefab);
-            AddDisposable(new GameObjectDisposer(view.gameObject));
-            return view;
+            return _objectResolver.Resolve<Player>();
         }
     }
 }
