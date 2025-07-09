@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Game.Level.Input
 {
+    [UsedImplicitly]
     public class StandaloneInputService : IInputService
     {
         public Vector2 Axis()
