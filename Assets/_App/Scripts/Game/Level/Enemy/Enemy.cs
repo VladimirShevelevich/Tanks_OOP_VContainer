@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Tools.Disposable;
+using UnityEngine;
 
 namespace Game.Level.Enemy
 {
@@ -8,6 +9,7 @@ namespace Game.Level.Enemy
     {
         private readonly EnemyViewFactory _enemyViewFactory;
         private EnemyContent.EnemyType _enemyType;
+        private Vector3 _startPosition;
 
         public Enemy(EnemyViewFactory enemyViewFactory)
         {
@@ -18,6 +20,11 @@ namespace Game.Level.Enemy
         {
             _enemyType = enemyType;
         }
+        
+        public void SetStartPosition(Vector3 startPosition)
+        {
+            _startPosition = startPosition;
+        }
 
         public void Init()
         {
@@ -26,7 +33,7 @@ namespace Game.Level.Enemy
 
         private void CreateView()
         {
-            var enemy = _enemyViewFactory.Create(_enemyType);
+            var enemy = _enemyViewFactory.Create(_enemyType, _startPosition);
             AddDisposable(new GameObjectDisposer(enemy.gameObject));
         }
     }

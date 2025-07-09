@@ -19,14 +19,11 @@ namespace Game.Level.Enemy
             _objectResolver = objectResolver;
         }
         
-        public GameObject Create(EnemyContent.EnemyType enemyType)
+        public GameObject Create(EnemyContent.EnemyType enemyType, Vector3 startPosition)
         {
-            var go = Object.Instantiate(_enemyContent.ViewPrefab);
-            if (enemyType == EnemyContent.EnemyType.Patrol)
-            {
-                var mover = go.AddComponent<EnemyPatrolMover>();
-                //mover.SetContent(_enemyContent);
-            }
+            var go = Object.Instantiate(_enemyContent.ViewPrefab, startPosition, Quaternion.identity);
+            if (enemyType == EnemyContent.EnemyType.Patrol) 
+                go.AddComponent<EnemyPatrolMover>();
 
             _objectResolver.InjectGameObject(go);
             return go;

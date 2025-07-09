@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UniRx;
+using UnityEngine;
 using VContainer;
+using Random = UnityEngine.Random;
 
 namespace Game.Level.Enemy
 {
@@ -17,16 +20,37 @@ namespace Game.Level.Enemy
 
         public void Start()
         {
-            var targetPos = transform.position + Vector3.right * _enemyContent.Movement.PatrolRange / 2;
+            SetInitialTargetPosition();
+        }
+
+        private void SetInitialTargetPosition()
+        {
+            var randomRange = Random.Range(
+                _enemyContent.Movement.PatrolRange.x,
+                _enemyContent.Movement.PatrolRange.y);
+            
+            var targetPos = new Vector3(
+                randomRange / 2,
+                transform.position.y,
+                transform.position.z) ;
             _targetPosition = targetPos;
         }
 
         private void OnDestinationReached()
         {
             var targetPos = (Vector3)_targetPosition;
+
+            Observable.Timer(TimeSpan.FromSeconds(_enemyContent.Movement.PatrolWaitTime)).Subscribe(_ =>
+            {
+                SetNewTargetPosition(targetPos);
+            }).AddTo(this);
+        }
+
+        private void SetNewTargetPosition(Vector3 targetPos)
+        {
             var newTargetPos = new Vector3(-targetPos.x, targetPos.y, targetPos.z);
             _targetPosition = newTargetPos;
-        }       
+        }
 
         private void Update()
         {

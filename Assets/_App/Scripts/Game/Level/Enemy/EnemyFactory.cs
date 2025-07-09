@@ -1,4 +1,5 @@
-﻿using VContainer;
+﻿using UnityEngine;
+using VContainer;
 
 namespace Game.Level.Enemy
 {
@@ -11,10 +12,11 @@ namespace Game.Level.Enemy
             _objectResolver = objectResolver;
         }
 
-        public Enemy Create(EnemyContent.EnemyType enemyType)
+        public Enemy Create(EnemyContent.EnemyType enemyType, Vector3 position)
         {
             var enemy = _objectResolver.Resolve<Enemy>();
             enemy.SetType(enemyType);
+            enemy.SetStartPosition(position);
             return enemy;
         }
     }

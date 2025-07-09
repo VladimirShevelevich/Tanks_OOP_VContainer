@@ -15,11 +15,13 @@ namespace Game.Level.Enemy
         [Serializable]
         public class MovementContent
         {
-            [field: SerializeField] public float PatrolRange { get; private set; }
+            [field: SerializeField] public Vector2 PatrolRange { get; private set; }
+            [field: SerializeField] public float PatrolWaitTime { get; private set; }
             [field: SerializeField] public float Speed { get; private set; }
         }
 
         [field: SerializeField] public GameObject ViewPrefab { get; private set; }
         [field: SerializeField] public MovementContent Movement { get; private set; }
+        [field: SerializeField] public Vector2 SpawnArea { get; private set; }
     }
 }
