@@ -1,5 +1,5 @@
 ﻿using Game.Level.Input;
-using Game.Level.Player.Projectile;
+using Game.Level.Projectile;
 using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
@@ -13,31 +13,27 @@ namespace Game.Level.Player
     {
         [SerializeField] private Transform _projectileSpawnPoint;
         
-        private ProjectileContent _projectileContent;
         private IInputService _inputService;
+        private ProjectileFactory _projectileFactory;
 
         [Inject]
-        public void Construct (ProjectileContent projectileContent, IInputService inputService)
+        public void Construct (IInputService inputService, ProjectileFactory projectileFactory)
         {
-            _projectileContent = projectileContent;
             _inputService = inputService;
+            _projectileFactory = projectileFactory;
         }
         
         public void Update()
         {
             if (_inputService.ShootKeyDown())
-                Shoot(new ShootRequest
-                {
-                    ProjectilePrefab = _projectileContent.ProjectilePrefab,
-                    Speed = _projectileContent.Speed
-                });
+                Shoot();
         }
 
-        private void Shoot(ShootRequest shootRequest)
+        private void Shoot()
         {
-            var obj = Instantiate(shootRequest.ProjectilePrefab, _projectileSpawnPoint.position, transform.rotation);
-            obj.Init(shootRequest.Speed);
-            new GameObjectDisposer(obj.gameObject).AddTo(this);
+            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, transform.rotation);
+            Destroy(projectile.gameObject, 3);
+            new GameObjectDisposer(projectile.gameObject).AddTo(this);
         }
     }
 }

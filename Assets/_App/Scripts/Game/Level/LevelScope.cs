@@ -3,6 +3,7 @@ using Game.Level.Enemy;
 using Game.Level.Environment;
 using Game.Level.Input;
 using Game.Level.Player;
+using Game.Level.Projectile;
 using VContainer;
 using VContainer.Unity;
 
@@ -18,6 +19,7 @@ namespace Game.Level
             EnemyInstaller.Install(builder);
 
             builder.Register<IInputService, StandaloneInputService>(Lifetime.Scoped);
+            builder.Register<ProjectileFactory>(Lifetime.Scoped);
             
             builder.UseEntryPoints(epBuilder =>
             {

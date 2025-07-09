@@ -1,5 +1,4 @@
-﻿using Game.Level.Player.Projectile;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Level.Player
 {

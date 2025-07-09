@@ -1,7 +1,7 @@
 ﻿using Game.Level.Config;
 using Game.Level.Enemy;
 using Game.Level.Player;
-using Game.Level.Player.Projectile;
+using Game.Level.Projectile;
 using UnityEngine;
 
 namespace Content
