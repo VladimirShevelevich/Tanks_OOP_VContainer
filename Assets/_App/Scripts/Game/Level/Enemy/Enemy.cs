@@ -8,12 +8,14 @@ namespace Game.Level.Enemy
     public class Enemy : BaseDisposable
     {
         private readonly EnemyViewFactory _enemyViewFactory;
+        private readonly EnemyHealth _enemyHealth;
         private EnemyContent.EnemyType _enemyType;
         private Vector3 _startPosition;
 
-        public Enemy(EnemyViewFactory enemyViewFactory)
+        public Enemy(EnemyViewFactory enemyViewFactory, EnemyHealth enemyHealth)
         {
             _enemyViewFactory = enemyViewFactory;
+            _enemyHealth = enemyHealth;
         }
 
         public void SetType(EnemyContent.EnemyType enemyType)
@@ -35,6 +37,8 @@ namespace Game.Level.Enemy
         {
             var enemy = _enemyViewFactory.Create(_enemyType, _startPosition);
             AddDisposable(new GameObjectDisposer(enemy.gameObject));
+            
+            _enemyHealth.BindView(enemy);
         }
     }
 }
