@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Level.Input;
+using UnityEngine;
 using VContainer;
 
 namespace Game.Level.Player
@@ -8,18 +9,19 @@ namespace Game.Level.Player
         [SerializeField] private CharacterController _characterController;
         
         private PlayerContent _playerContent;
+        private IInputService _inputService;
 
         [Inject]
-        public void Construct(PlayerContent playerContent)
+        public void Construct(PlayerContent playerContent, IInputService inputService)
         {
             _playerContent = playerContent;
+            _inputService = inputService;
         }
         
         public void Update()
         {
-            var horizontalInput = Input.GetAxis("Horizontal");
-            var verticalInput = Input.GetAxis("Vertical");
-            
+            var horizontalInput = _inputService.Axis().x;
+            var verticalInput = _inputService.Axis().y;
             Rotate(horizontalInput * _playerContent.RotationSpeed * Time.deltaTime);
             Move(verticalInput * _playerContent.Speed * Time.deltaTime);
         }

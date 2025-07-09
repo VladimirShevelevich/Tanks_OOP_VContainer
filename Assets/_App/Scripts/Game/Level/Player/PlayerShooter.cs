@@ -1,4 +1,5 @@
-﻿using Game.Level.Player.Projectile;
+﻿using Game.Level.Input;
+using Game.Level.Player.Projectile;
 using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
@@ -13,16 +14,18 @@ namespace Game.Level.Player
         [SerializeField] private Transform _projectileSpawnPoint;
         
         private ProjectileContent _projectileContent;
+        private IInputService _inputService;
 
         [Inject]
-        public void Construct (ProjectileContent projectileContent)
+        public void Construct (ProjectileContent projectileContent, IInputService inputService)
         {
             _projectileContent = projectileContent;
+            _inputService = inputService;
         }
         
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (_inputService.ShootKeyDown())
                 Shoot(new ShootRequest
                 {
                     ProjectilePrefab = _projectileContent.ProjectilePrefab,
