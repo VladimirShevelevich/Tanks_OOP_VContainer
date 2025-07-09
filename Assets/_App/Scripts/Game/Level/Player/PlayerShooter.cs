@@ -1,42 +1,40 @@
-﻿using System;
-using Game.Level.Player.Projectile;
+﻿using Game.Level.Player.Projectile;
 using JetBrains.Annotations;
+using Tools.Disposable;
 using UniRx;
 using UnityEngine;
-using VContainer.Unity;
+using VContainer;
 
 namespace Game.Level.Player
 {
     [UsedImplicitly]
-    public class PlayerShooter : IDisposable, ITickable
+    public class PlayerShooter : MonoBehaviour
     {
-        private readonly ProjectileContent _projectileContent;
-        private PlayerView _playerView;
-        private readonly CompositeDisposable _disposable = new();
+        [SerializeField] private Transform _projectileSpawnPoint;
+        
+        private ProjectileContent _projectileContent;
 
-        public PlayerShooter(ProjectileContent projectileContent)
+        [Inject]
+        public void Construct (ProjectileContent projectileContent)
         {
             _projectileContent = projectileContent;
         }
         
-        public void BindView(PlayerView playerView)
-        {
-            _playerView = playerView;
-        }
-        
-        public void Tick()
+        public void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                _playerView.Shoot(new ShootRequest
+                Shoot(new ShootRequest
                 {
                     ProjectilePrefab = _projectileContent.ProjectilePrefab,
                     Speed = _projectileContent.Speed
                 });
         }
 
-        public void Dispose()
+        private void Shoot(ShootRequest shootRequest)
         {
-            _disposable.Dispose();
+            var obj = Instantiate(shootRequest.ProjectilePrefab, _projectileSpawnPoint.position, transform.rotation);
+            obj.Init(shootRequest.Speed);
+            new GameObjectDisposer(obj.gameObject).AddTo(this);
         }
     }
 }

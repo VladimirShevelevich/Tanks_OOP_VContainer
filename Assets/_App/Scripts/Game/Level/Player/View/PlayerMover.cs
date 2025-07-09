@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using VContainer;
 
 namespace Game.Level.Player
 {
@@ -8,7 +9,8 @@ namespace Game.Level.Player
         
         private PlayerContent _playerContent;
 
-        public void SetPlayerContent(PlayerContent playerContent)
+        [Inject]
+        public void Construct(PlayerContent playerContent)
         {
             _playerContent = playerContent;
         }

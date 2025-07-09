@@ -9,7 +9,8 @@ namespace Game.Level.Enemy
 
         private EnemyContent _enemyContent;
 
-        public void SetContent(EnemyContent enemyContent)
+        [Inject]
+        public void Construct(EnemyContent enemyContent)
         {
             _enemyContent = enemyContent;
         }

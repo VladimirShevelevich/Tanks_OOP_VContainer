@@ -15,7 +15,7 @@ namespace Tools.Disposable
         
         public void Dispose()
         {
-            _disposable.Dispose();
+            _disposable?.Dispose();
         }
     }
 }
