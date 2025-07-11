@@ -16,7 +16,7 @@ namespace Game.Level.Enemy
 
         public void BindView(GameObject enemyView)
         {
-            _enemyView
+            
         }
 
         private void OnHealthChanged(int newHealth)
