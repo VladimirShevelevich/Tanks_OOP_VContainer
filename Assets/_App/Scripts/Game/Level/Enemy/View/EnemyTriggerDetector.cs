@@ -7,7 +7,7 @@ namespace Game.Level.Enemy
     public class EnemyTriggerDetector : MonoBehaviour
     {
         public IObservable<Collider> OnTrigger => _onTrigger;
-        private ReactiveCommand<Collider> _onTrigger;
+        private readonly ReactiveCommand<Collider> _onTrigger = new();
         
         private void OnTriggerEnter(Collider other)
         {

@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Game.Level.Enemy.Requests;
+using JetBrains.Annotations;
 using Tools.Disposable;
 using UnityEngine;
 using VContainer.Unity;
@@ -19,11 +20,17 @@ namespace Game.Level.Enemy
         
         public void Initialize()
         {
-            var enemy = _enemyFactory.Create(EnemyContent.EnemyType.Static, RandomPosition());
-            enemy.Init();
+            _enemyFactory.Create(new CreateEnemyRequest
+            {
+                EnemyType = EnemyContent.EnemyType.Static,
+                Position = RandomPosition()
+            }, GetDisposable());
             
-            enemy = _enemyFactory.Create(EnemyContent.EnemyType.Patrol, RandomPosition());
-            enemy.Init();
+            _enemyFactory.Create(new CreateEnemyRequest
+            {
+                EnemyType = EnemyContent.EnemyType.Patrol,
+                Position = RandomPosition()
+            }, GetDisposable());
         }
 
         private Vector3 RandomPosition()

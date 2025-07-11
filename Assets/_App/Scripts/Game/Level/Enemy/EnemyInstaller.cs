@@ -13,10 +13,9 @@ namespace Game.Level.Enemy
             });
 
             builder.Register<EnemyFactory>(Lifetime.Scoped);
-            builder.Register<EnemyViewFactory>(Lifetime.Scoped);
             
-            builder.Register<Enemy>(Lifetime.Transient);
             builder.Register<EnemyHealth>(Lifetime.Transient);
+            builder.Register<EnemyModel>(Lifetime.Transient);
         }
     }
 }

@@ -1,23 +1,55 @@
-﻿using UnityEngine;
+﻿using Game.Level.Enemy.Requests;
+using JetBrains.Annotations;
+using Tools.Disposable;
+using UniRx;
+using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Game.Level.Enemy
 {
+    [UsedImplicitly]
     public class EnemyFactory
     {
+        private readonly EnemyContent _enemyContent;
         private readonly IObjectResolver _objectResolver;
 
-        public EnemyFactory(IObjectResolver objectResolver)
+        public EnemyFactory(EnemyContent enemyContent, IObjectResolver objectResolver)
         {
+            _enemyContent = enemyContent;
             _objectResolver = objectResolver;
         }
 
-        public Enemy Create(EnemyContent.EnemyType enemyType, Vector3 position)
+        public void Create(CreateEnemyRequest request, CompositeDisposable disposable)
         {
-            var enemy = _objectResolver.Resolve<Enemy>();
-            enemy.SetType(enemyType);
-            enemy.SetStartPosition(position);
-            return enemy;
+            var model = CreateModel();
+            var go = CreateView(request, disposable);
+            CreateEnemyHealth(go, model, disposable);
+        }
+
+        private EnemyModel CreateModel()
+        {
+            return _objectResolver.Resolve<EnemyModel>();
+        }
+
+        private GameObject CreateView(CreateEnemyRequest request, CompositeDisposable disposable)
+        {
+            var go = Object.Instantiate(_enemyContent.ViewPrefab, request.Position, Quaternion.identity);
+            if (request.EnemyType == EnemyContent.EnemyType.Patrol)
+            {
+                go.AddComponent<EnemyPatrolMover>();
+            }
+            _objectResolver.InjectGameObject(go);
+            disposable.Add(new GameObjectDisposer(go));
+            return go;
+        }
+
+        private void CreateEnemyHealth(GameObject go, EnemyModel model, CompositeDisposable disposable)
+        {
+            var enemyHealth = _objectResolver.Resolve<EnemyHealth>();
+            disposable.Add(enemyHealth);
+            enemyHealth.BindModel(model);
+            enemyHealth.BindView(go);
         }
     }
 }

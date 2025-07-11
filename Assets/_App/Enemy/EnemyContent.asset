@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2134bd612d9e471995f59fc09e2b23d3, type: 3}
   m_Name: EnemyContent
   m_EditorClassIdentifier: 
-  <ViewPrefab>k__BackingField: {fileID: 7647134980136005757, guid: 399393ccaafb17741a4c43b77a8a08e2, type: 3}
+  <ViewPrefab>k__BackingField: {fileID: 6661261335787906597, guid: 399393ccaafb17741a4c43b77a8a08e2, type: 3}
   <Movement>k__BackingField:
-    <PatrolRange>k__BackingField: 15
+    <PatrolRange>k__BackingField: {x: 10, y: 20}
+    <PatrolWaitTime>k__BackingField: 0
     <Speed>k__BackingField: 3
+  <SpawnArea>k__BackingField: {x: 7, y: 7}
