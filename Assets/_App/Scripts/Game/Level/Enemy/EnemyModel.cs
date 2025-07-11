@@ -1,8 +1,10 @@
-﻿using UniRx;
+﻿using JetBrains.Annotations;
+using UniRx;
 using UnityEngine;
 
 namespace Game.Level.Enemy
 {
+    [UsedImplicitly]
     public class EnemyModel
     {
         private readonly EnemyContent _enemyContent;
@@ -22,7 +24,8 @@ namespace Game.Level.Enemy
 
         public void DecreaseHealth(int amount)
         {
-            _health.Value -= amount;
+            var newHealth = Mathf.Max(0, _health.Value - amount);
+            _health.Value = newHealth;
             Debug.Log(_health.Value);
         }
     }

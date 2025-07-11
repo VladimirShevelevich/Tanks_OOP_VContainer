@@ -16,6 +16,7 @@ namespace Game.Level.Enemy
             
             builder.Register<EnemyHealth>(Lifetime.Transient);
             builder.Register<EnemyModel>(Lifetime.Transient);
+            builder.Register<EnemyLifeTime>(Lifetime.Transient);
         }
     }
 }
