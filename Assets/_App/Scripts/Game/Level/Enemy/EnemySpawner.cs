@@ -1,6 +1,7 @@
 ﻿using Game.Level.Enemy.Requests;
 using JetBrains.Annotations;
 using Tools.Disposable;
+using UniRx;
 using UnityEngine;
 using VContainer.Unity;
 
@@ -20,17 +21,19 @@ namespace Game.Level.Enemy
         
         public void Initialize()
         {
+            SpawnEnemy(EnemyContent.EnemyType.Static);
+            SpawnEnemy(EnemyContent.EnemyType.Patrol);
+        }
+
+        private void SpawnEnemy(EnemyContent.EnemyType enemyType)
+        {
+            var disposable = new CompositeDisposable();
+            AddDisposable(disposable);
             _enemyFactory.Create(new CreateEnemyRequest
             {
-                EnemyType = EnemyContent.EnemyType.Static,
+                EnemyType = enemyType,
                 Position = RandomPosition()
-            }, GetDisposable());
-            
-            _enemyFactory.Create(new CreateEnemyRequest
-            {
-                EnemyType = EnemyContent.EnemyType.Patrol,
-                Position = RandomPosition()
-            }, GetDisposable());
+            }, disposable);
         }
 
         private Vector3 RandomPosition()

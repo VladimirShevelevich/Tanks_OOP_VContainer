@@ -23,7 +23,7 @@ namespace Game.Level.Enemy
         public void Create(CreateEnemyRequest request, CompositeDisposable disposable)
         {
             var model = CreateModel();
-            var go = CreateView(request, disposable);
+            var go = CreateView(request, model, disposable);
             CreateEnemyHealth(go, model, disposable);
         }
 
@@ -32,7 +32,7 @@ namespace Game.Level.Enemy
             return _objectResolver.Resolve<EnemyModel>();
         }
 
-        private GameObject CreateView(CreateEnemyRequest request, CompositeDisposable disposable)
+        private GameObject CreateView(CreateEnemyRequest request, EnemyModel model, CompositeDisposable disposable)
         {
             var go = Object.Instantiate(_enemyContent.ViewPrefab, request.Position, Quaternion.identity);
             if (request.EnemyType == EnemyContent.EnemyType.Patrol)

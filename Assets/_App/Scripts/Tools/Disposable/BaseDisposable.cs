@@ -13,12 +13,6 @@ namespace Tools.Disposable
             _disposable.Add(disposable);
         }
 
-        protected CompositeDisposable GetDisposable()
-        {
-            _disposable ??= new CompositeDisposable();
-            return _disposable;
-        }
-        
         public void Dispose()
         {
             _disposable?.Dispose();

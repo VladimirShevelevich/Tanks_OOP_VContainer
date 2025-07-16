@@ -11,6 +11,7 @@ namespace Game.Level.Enemy
     public class EnemyHealth : BaseDisposable
     {
         private EnemyModel _enemyModel;
+        private EnemyAnimator _enemyAnimator;
 
         public void BindModel(EnemyModel model)
         {
@@ -19,6 +20,7 @@ namespace Game.Level.Enemy
         
         public void BindView(GameObject view)
         {
+            _enemyAnimator = view.GetComponent<EnemyAnimator>();
             AddDisposable(
                 SubscribeOnProjectileTrigger(view));
         }
@@ -38,6 +40,11 @@ namespace Game.Level.Enemy
         private void DecreaseHealth()
         {
             _enemyModel.DecreaseHealth(1);
+            if (_enemyModel.Health.Value > 0)
+                _enemyAnimator.PlayDamage();
+            else 
+                _enemyAnimator.PlayDestroy(() => { });
+                
         }
     }
 }
