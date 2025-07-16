@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpawnPoint: {fileID: 5080785380872172875}
+  _towerTransform: {fileID: 5080785380872172875}
 --- !u!1001 &8843059236779596433
 PrefabInstance:
   m_ObjectHideFlags: 0

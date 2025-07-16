@@ -1,5 +1,9 @@
 ﻿using JetBrains.Annotations;
+using Tools.Disposable;
+using UniRx;
+using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Game.Level.Player
 {
@@ -7,15 +11,25 @@ namespace Game.Level.Player
     public class PlayerFactory
     {
         private readonly IObjectResolver _objectResolver;
+        private readonly PlayerContent _playerContent;
 
-        public PlayerFactory(IObjectResolver objectResolver)
+        public PlayerFactory(IObjectResolver objectResolver, PlayerContent playerContent)
         {
             _objectResolver = objectResolver;
+            _playerContent = playerContent;
         }
 
-        public Player CreatePlayer()
+        public void CreatePlayer(PlayerModel playerModel, CompositeDisposable disposable)
         {
-            return _objectResolver.Resolve<Player>();
+            var go = CreateView();
+            disposable.Add(new GameObjectDisposer(go));
+        }
+
+        private GameObject CreateView()
+        {
+            var view = Object.Instantiate(_playerContent.ViewPrefab);
+            _objectResolver.InjectGameObject(view);
+            return view;
         }
     }
 }
