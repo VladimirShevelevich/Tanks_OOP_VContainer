@@ -10,6 +10,9 @@ namespace Game.Level.Enemy
     [UsedImplicitly]
     public class EnemyHealth : BaseDisposable
     {
+        public IObservable<Unit> OnDisposeInvoked => _onDisposeInvoked;
+        private readonly ReactiveCommand _onDisposeInvoked = new();
+        
         private EnemyModel _enemyModel;
         private EnemyAnimator _enemyAnimator;
 
@@ -41,10 +44,15 @@ namespace Game.Level.Enemy
         {
             _enemyModel.DecreaseHealth(1);
             if (_enemyModel.Health.Value > 0)
+            {
                 _enemyAnimator.PlayDamage();
-            else 
-                _enemyAnimator.PlayDestroy(() => { });
-                
+                return;
+            }
+
+            _enemyAnimator.PlayDestroy(() =>
+            {
+                _onDisposeInvoked.Execute();
+            });
         }
     }
 }

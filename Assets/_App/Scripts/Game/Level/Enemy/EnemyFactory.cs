@@ -50,6 +50,8 @@ namespace Game.Level.Enemy
             disposable.Add(enemyHealth);
             enemyHealth.BindModel(model);
             enemyHealth.BindView(go);
+            disposable.Add(
+                enemyHealth.OnDisposeInvoked.Subscribe(_ => disposable.Dispose()));
         }
     }
 }
