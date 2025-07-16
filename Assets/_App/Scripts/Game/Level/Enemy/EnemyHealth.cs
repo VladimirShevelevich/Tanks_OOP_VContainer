@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Level.Projectile;
+using Game.Level.Scores;
 using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
@@ -12,10 +13,16 @@ namespace Game.Level.Enemy
     {
         public IObservable<Unit> OnDisposeInvoked => _onDisposeInvoked;
         private readonly ReactiveCommand _onDisposeInvoked = new();
-        
+
+        private readonly ScoresService _scoresService;
         private EnemyModel _enemyModel;
         private EnemyAnimator _enemyAnimator;
 
+        public EnemyHealth(ScoresService scoresService)
+        {
+            _scoresService = scoresService;
+        }
+        
         public void BindModel(EnemyModel model)
         {
             _enemyModel = model;
@@ -49,6 +56,12 @@ namespace Game.Level.Enemy
                 return;
             }
 
+            OnDeath();
+        }
+
+        private void OnDeath()
+        {
+            _scoresService.AddScores(1);
             _enemyAnimator.PlayDestroy(() =>
             {
                 _onDisposeInvoked.Execute();
