@@ -19,9 +19,16 @@ namespace Game.Level.Enemy
             [field: SerializeField] public float PatrolWaitTime { get; private set; }
             [field: SerializeField] public float Speed { get; private set; }
         }
+        
+        [Serializable]
+        public class ShootingContent
+        {
+            [field: SerializeField] public float ShootFrequency { get; private set; }
+        }
 
         [field: SerializeField] public GameObject ViewPrefab { get; private set; }
         [field: SerializeField] public MovementContent Movement { get; private set; }
+        [field: SerializeField] public ShootingContent Shooting { get; private set; }
         [field: SerializeField] public Vector2 SpawnArea { get; private set; }
     }
 }
