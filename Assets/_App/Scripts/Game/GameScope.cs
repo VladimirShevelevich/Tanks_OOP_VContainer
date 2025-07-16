@@ -8,10 +8,12 @@ namespace Game
     public class GameScope : LifetimeScope
     {
         [SerializeField] private ContentProvider _contentProvider;
+        [SerializeField] private Canvas _uiCanvas;
         
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterContent(builder);
+            builder.RegisterInstance(_uiCanvas);
             builder.RegisterEntryPoint<LevelCreator>();
         }
 
@@ -21,6 +23,7 @@ namespace Game
             builder.RegisterInstance(_contentProvider.PlayerContent);
             builder.RegisterInstance(_contentProvider.ProjectileContent);
             builder.RegisterInstance(_contentProvider.EnemyContent);
+            builder.RegisterInstance(_contentProvider.HudContent);
         }
     }
 }

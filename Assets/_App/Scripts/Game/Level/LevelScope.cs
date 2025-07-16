@@ -1,6 +1,7 @@
 ﻿using Game.Level.Config;
 using Game.Level.Enemy;
 using Game.Level.Environment;
+using Game.Level.HUD;
 using Game.Level.Input;
 using Game.Level.Player;
 using Game.Level.Projectile;
@@ -18,10 +19,11 @@ namespace Game.Level
         {
             PlayerInstaller.Install(builder);
             EnemyInstaller.Install(builder);
+            HudInstaller.Install(builder);
 
             builder.Register<IInputService, StandaloneInputService>(Lifetime.Scoped);
             builder.Register<ProjectileFactory>(Lifetime.Scoped);
-            builder.Register<ScoresService>(Lifetime.Scoped);
+            builder.Register<ScoresService>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
             
             builder.UseEntryPoints(epBuilder =>
             {

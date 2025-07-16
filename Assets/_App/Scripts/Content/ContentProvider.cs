@@ -1,5 +1,6 @@
 ﻿using Game.Level.Config;
 using Game.Level.Enemy;
+using Game.Level.HUD;
 using Game.Level.Player;
 using Game.Level.Projectile;
 using UnityEngine;
@@ -13,5 +14,6 @@ namespace Content
         [field: SerializeField] public PlayerContent PlayerContent { get; private set; }
         [field: SerializeField] public ProjectileContent ProjectileContent { get; private set; }
         [field: SerializeField] public EnemyContent EnemyContent { get; private set; }
+        [field: SerializeField] public HudContent HudContent { get; private set; }
     }
 }
