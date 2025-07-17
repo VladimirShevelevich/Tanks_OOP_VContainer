@@ -26,7 +26,7 @@ namespace Game.Level.Enemy
         private IDisposable SubscribeOnProjectileTrigger(GameObject view)
         {
             return view.GetComponent<EnemyTriggerDetector>().OnTrigger.Where(x =>
-                x.GetComponent<ProjectileView>()).
+                x.GetComponent<ProjectileView>() && x.GetComponent<ProjectileView>().SourceType == ProjectileSourceType.Player).
                 Subscribe(_ => OnTriggeredByProjectile());
         }
 

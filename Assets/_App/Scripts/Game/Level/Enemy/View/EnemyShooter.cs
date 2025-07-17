@@ -44,7 +44,7 @@ namespace Game.Level.Enemy
             _towerTransform.LookAt(playerPosition);
             
             var rotation = Quaternion.LookRotation(playerPosition - transform.position);
-            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, rotation);
+            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, rotation, ProjectileSourceType.Enemy);
             Destroy(projectile.gameObject, 3);
             new GameObjectDisposer(projectile.gameObject).AddTo(this);
         }

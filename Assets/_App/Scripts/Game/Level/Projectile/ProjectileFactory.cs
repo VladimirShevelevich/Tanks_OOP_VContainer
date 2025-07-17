@@ -17,10 +17,11 @@ namespace Game.Level.Projectile
             _objectResolver = objectResolver;
         }
 
-        public ProjectileView Create(Vector3 position, Quaternion rotation)
+        public ProjectileView Create(Vector3 position, Quaternion rotation, ProjectileSourceType sourceType)
         {
             var view = Object.Instantiate(_projectileContent.ProjectilePrefab, position, rotation);
             _objectResolver.InjectGameObject(view.gameObject);
+            view.SetSourceType(sourceType);
             return view;
         }
     }

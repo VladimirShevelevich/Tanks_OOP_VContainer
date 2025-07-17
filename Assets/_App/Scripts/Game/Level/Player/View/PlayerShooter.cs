@@ -31,7 +31,7 @@ namespace Game.Level.Player
 
         private void Shoot()
         {
-            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, transform.rotation);
+            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, transform.rotation, ProjectileSourceType.Player);
             Destroy(projectile.gameObject, 3);
             new GameObjectDisposer(projectile.gameObject).AddTo(this);
         }
