@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Level.LevelState;
 using Game.Level.Player;
 using Game.Level.Projectile;
 using Tools.Disposable;
@@ -16,13 +17,18 @@ namespace Game.Level.Enemy
         private ProjectileFactory _projectileFactory;
         private EnemyContent.ShootingContent _shootingContent;
         private PlayerService _playerService;
+        private LevelStateService _levelStateService;
 
         [Inject]
-        public void Construct(ProjectileFactory projectileFactory, EnemyContent enemyContent, PlayerService playerService)
+        public void Construct(ProjectileFactory projectileFactory, 
+            EnemyContent enemyContent, 
+            PlayerService playerService,
+            LevelStateService levelStateService)
         {
             _shootingContent = enemyContent.Shooting;
             _projectileFactory = projectileFactory;
             _playerService = playerService;
+            _levelStateService = levelStateService;
         }
 
         private void Start()
@@ -45,6 +51,7 @@ namespace Game.Level.Enemy
         {
             Observable.Timer(TimeSpan.FromSeconds(_shootingContent.ShootFrequency)).
                 Repeat().
+                Where(x => _levelStateService.CurrentState.Value == LevelStateType.GameLoop).
                 Subscribe(_ => Shoot()).
                 AddTo(this);
         }

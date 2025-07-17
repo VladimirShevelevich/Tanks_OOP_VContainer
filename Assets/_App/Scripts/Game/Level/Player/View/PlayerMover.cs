@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Level.Input;
+using Game.Level.LevelState;
 using UnityEngine;
 using VContainer;
 
@@ -12,12 +13,14 @@ namespace Game.Level.Player
         private PlayerContent _playerContent;
         private IInputService _inputService;
         private PlayerModel _playerModel;
+        private LevelStateService _levelStateService;
 
         [Inject]
-        public void Construct(PlayerContent playerContent, IInputService inputService)
+        public void Construct(PlayerContent playerContent, IInputService inputService, LevelStateService levelStateService)
         {
             _playerContent = playerContent;
             _inputService = inputService;
+            _levelStateService = levelStateService;
         }
 
         public void BindModel(PlayerModel playerModel)
@@ -26,6 +29,12 @@ namespace Game.Level.Player
         }
 
         private void Update()
+        {
+            if (_levelStateService.CurrentState.Value == LevelStateType.GameLoop)
+                Move();
+        }
+
+        private void Move()
         {
             var horizontalInput = _inputService.Axis().x;
             var verticalInput = _inputService.Axis().y;

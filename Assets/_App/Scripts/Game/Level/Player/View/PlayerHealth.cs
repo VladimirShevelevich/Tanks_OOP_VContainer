@@ -10,12 +10,15 @@ namespace Game.Level.Player
     public class PlayerHealth : BaseDisposable
     {
         private readonly PlayerModel _playerModel;
+        private readonly ReactiveCommand _onPlayerDeath;
         private readonly TankAnimator _tankAnimator;
 
-        public PlayerHealth(PlayerModel playerModel, GameObject playerView)
+        public PlayerHealth(PlayerModel playerModel, GameObject playerView, ReactiveCommand onPlayerDeath)
         {
             _playerModel = playerModel;
+            _onPlayerDeath = onPlayerDeath;
             _tankAnimator = playerView.GetComponent<TankAnimator>();
+            
             AddDisposable(SubscribeOnProjectileTrigger(playerView));
         }
         
@@ -45,7 +48,7 @@ namespace Game.Level.Player
 
         private void OnDeath()
         {
-            
+            _onPlayerDeath.Execute();
         }
     }
 }

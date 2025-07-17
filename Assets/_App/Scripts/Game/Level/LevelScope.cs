@@ -3,6 +3,7 @@ using Game.Level.Enemy;
 using Game.Level.Environment;
 using Game.Level.HUD;
 using Game.Level.Input;
+using Game.Level.LevelState;
 using Game.Level.Player;
 using Game.Level.Projectile;
 using Game.Level.Scores;
@@ -28,6 +29,7 @@ namespace Game.Level
             builder.UseEntryPoints(epBuilder =>
             {
                 epBuilder.Add<EnvironmentPresenter>();
+                epBuilder.Add<LevelStateService>().AsSelf();
             });
         }
     }

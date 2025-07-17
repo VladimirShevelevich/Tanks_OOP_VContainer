@@ -19,10 +19,10 @@ namespace Game.Level.Player
             _playerContent = playerContent;
         }
 
-        public void CreatePlayer(PlayerModel playerModel, CompositeDisposable disposable)
+        public void CreatePlayer(PlayerModel playerModel, CompositeDisposable disposable, ReactiveCommand onPlayerDeath)
         {
             var go = CreateView(playerModel);
-            CreatePlayerHealth(go, playerModel, disposable);
+            CreatePlayerHealth(go, playerModel, disposable, onPlayerDeath);
             disposable.Add(new GameObjectDisposer(go));
         }
 
@@ -34,9 +34,9 @@ namespace Game.Level.Player
             return view;
         }        
         
-        private void CreatePlayerHealth(GameObject go, PlayerModel model, CompositeDisposable disposable)
+        private void CreatePlayerHealth(GameObject go, PlayerModel model, CompositeDisposable disposable, ReactiveCommand onPlayerDeath)
         {
-            var playerHealth = new PlayerHealth(model, go);
+            var playerHealth = new PlayerHealth(model, go, onPlayerDeath);
             disposable.Add(playerHealth);
         }
     }

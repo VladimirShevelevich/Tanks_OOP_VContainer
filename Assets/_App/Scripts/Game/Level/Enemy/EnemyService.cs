@@ -29,7 +29,7 @@ namespace Game.Level.Enemy
             SpawnEnemy(EnemyContent.EnemyType.Static);
             SpawnEnemy(EnemyContent.EnemyType.Patrol);
         }
-
+        
         private void SpawnEnemy(EnemyContent.EnemyType enemyType)
         {
             var enemyDisposable = new CompositeDisposable();

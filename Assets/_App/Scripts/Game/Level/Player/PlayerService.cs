@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
 using VContainer.Unity;
@@ -8,6 +9,8 @@ namespace Game.Level.Player
     [UsedImplicitly]
     public class PlayerService : BaseDisposable, IInitializable
     {
+        public IObservable<Unit> OnPlayerDeath => _onPlayerDeath;
+        private readonly ReactiveCommand _onPlayerDeath = new();
         public IPlayerModel PlayerModel { get; private set; }
         
         private readonly PlayerFactory _playerFactory;
@@ -30,7 +33,7 @@ namespace Game.Level.Player
         {
             var playerDisposable = new CompositeDisposable();
             AddDisposable(playerDisposable);
-            _playerFactory.CreatePlayer(model, playerDisposable);
+            _playerFactory.CreatePlayer(model, playerDisposable, _onPlayerDeath);
         }
     }
 }

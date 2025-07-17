@@ -7,5 +7,6 @@ namespace Game.Level.Config
     public class LevelConfig : ScriptableObject
     {
         [field: SerializeField] public EnvironmentView EnvironmentViewPrefab { get; private set; }
+        [field: SerializeField] public int ScoreGoal { get; private set; }
     }
 }

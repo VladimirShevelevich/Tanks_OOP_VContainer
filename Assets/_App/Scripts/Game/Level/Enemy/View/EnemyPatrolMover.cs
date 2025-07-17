@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Level.LevelState;
 using UniRx;
 using UnityEngine;
 using VContainer;
@@ -11,11 +12,13 @@ namespace Game.Level.Enemy
         private Vector3? _targetPosition;
 
         private EnemyContent _enemyContent;
+        private LevelStateService _levelStateService;
 
         [Inject]
-        public void Construct(EnemyContent enemyContent)
+        public void Construct(EnemyContent enemyContent, LevelStateService levelStateService)
         {
             _enemyContent = enemyContent;
+            _levelStateService = levelStateService;
         }
 
         public void Start()
@@ -54,6 +57,9 @@ namespace Game.Level.Enemy
 
         private void Update()
         {
+            if (_levelStateService.CurrentState.Value != LevelStateType.GameLoop)
+                return;
+            
             if (_targetPosition == null)
                 return;
 
