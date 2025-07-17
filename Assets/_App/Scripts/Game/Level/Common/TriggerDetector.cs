@@ -2,9 +2,9 @@
 using UniRx;
 using UnityEngine;
 
-namespace Game.Level.Enemy
+namespace Game.Level.Common
 {
-    public class EnemyTriggerDetector : MonoBehaviour
+    public class TriggerDetector : MonoBehaviour
     {
         public IObservable<Collider> OnTrigger => _onTrigger;
         private readonly ReactiveCommand<Collider> _onTrigger = new();

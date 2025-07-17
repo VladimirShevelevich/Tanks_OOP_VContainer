@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5280323459375995792}
   - component: {fileID: 7696096845923131161}
   - component: {fileID: 5862970598141566958}
+  - component: {fileID: 8906486795960139874}
+  - component: {fileID: 6500280059835525094}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -87,6 +89,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpawnPoint: {fileID: 2912558884025880959}
+--- !u!114 &8906486795960139874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959131172394410192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84fe4f5e241543ca99c4b5faab17f53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 7957286476395143517}
+--- !u!114 &6500280059835525094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959131172394410192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49f52c395d34d75aa390fe176b0c919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3805508698023097232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,5 +179,10 @@ Transform:
 --- !u!4 &2912558884025880959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2063947290855744239, guid: dc84a58afe1344547a230a5cb3c072c8, type: 3}
+  m_PrefabInstance: {fileID: 3805508698023097232}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7957286476395143517 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6530804518502666957, guid: dc84a58afe1344547a230a5cb3c072c8, type: 3}
   m_PrefabInstance: {fileID: 3805508698023097232}
   m_PrefabAsset: {fileID: 0}

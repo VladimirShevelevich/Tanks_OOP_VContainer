@@ -24,8 +24,8 @@ namespace Game.Level.Player
         {
             _playerModel = playerModel;
         }
-        
-        public void Update()
+
+        private void Update()
         {
             var horizontalInput = _inputService.Axis().x;
             var verticalInput = _inputService.Axis().y;

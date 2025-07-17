@@ -11,15 +11,17 @@ namespace Game.Level.Player
         public IPlayerModel PlayerModel { get; private set; }
         
         private readonly PlayerFactory _playerFactory;
+        private readonly PlayerContent _playerContent;
 
-        public PlayerService(PlayerFactory playerFactory)
+        public PlayerService(PlayerFactory playerFactory, PlayerContent playerContent)
         {
             _playerFactory = playerFactory;
+            _playerContent = playerContent;
         }
         
         public void Initialize()
         {
-            var model = new PlayerModel();
+            var model = new PlayerModel(_playerContent.InitialHealth);
             CreatePlayer(model);
             PlayerModel = model;
         }

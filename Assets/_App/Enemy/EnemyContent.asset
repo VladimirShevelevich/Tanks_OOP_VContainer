@@ -17,4 +17,7 @@ MonoBehaviour:
     <PatrolRange>k__BackingField: {x: 10, y: 20}
     <PatrolWaitTime>k__BackingField: 0
     <Speed>k__BackingField: 3
+  <Shooting>k__BackingField:
+    <ShootFrequency>k__BackingField: 2
   <SpawnArea>k__BackingField: {x: 7, y: 7}
+  <DestroyReward>k__BackingField: 5

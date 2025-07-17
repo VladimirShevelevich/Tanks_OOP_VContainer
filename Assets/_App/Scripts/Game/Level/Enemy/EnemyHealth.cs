@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Level.Common;
 using Game.Level.Projectile;
 using Game.Level.Scores;
 using JetBrains.Annotations;
@@ -12,20 +13,20 @@ namespace Game.Level.Enemy
     public class EnemyHealth : BaseDisposable
     {
         private readonly EnemyModel _enemyModel;
-        private readonly EnemyAnimator _enemyAnimator;
+        private readonly TankAnimator _tankAnimator;
         private readonly ReactiveCommand _onDestroyed;
 
         public EnemyHealth(EnemyModel enemyModel, GameObject view, ReactiveCommand onDestroyed)
         {
             _enemyModel = enemyModel;
             _onDestroyed = onDestroyed;
-            _enemyAnimator = view.GetComponent<EnemyAnimator>();
+            _tankAnimator = view.GetComponent<TankAnimator>();
             AddDisposable(SubscribeOnProjectileTrigger(view));
         }
 
         private IDisposable SubscribeOnProjectileTrigger(GameObject view)
         {
-            return view.GetComponent<EnemyTriggerDetector>().OnTrigger.Where(x =>
+            return view.GetComponent<TriggerDetector>().OnTrigger.Where(x =>
                 x.GetComponent<ProjectileView>() && x.GetComponent<ProjectileView>().SourceType == ProjectileSourceType.Player).
                 Subscribe(_ => OnTriggeredByProjectile());
         }
@@ -40,7 +41,7 @@ namespace Game.Level.Enemy
             _enemyModel.DecreaseHealth(1);
             if (_enemyModel.Health.Value > 0)
             {
-                _enemyAnimator.PlayDamage();
+                _tankAnimator.PlayDamage();
                 return;
             }
 
@@ -49,7 +50,7 @@ namespace Game.Level.Enemy
 
         private void OnDeath()
         {
-            _enemyAnimator.PlayDestroy(() =>
+            _tankAnimator.PlayDestroy(() =>
             {
                 _onDestroyed.Execute();
             });

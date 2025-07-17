@@ -22,6 +22,7 @@ namespace Game.Level.Player
         public void CreatePlayer(PlayerModel playerModel, CompositeDisposable disposable)
         {
             var go = CreateView(playerModel);
+            CreatePlayerHealth(go, playerModel, disposable);
             disposable.Add(new GameObjectDisposer(go));
         }
 
@@ -31,6 +32,12 @@ namespace Game.Level.Player
             _objectResolver.InjectGameObject(view);
             view.GetComponent<PlayerMover>().BindModel(playerModel);
             return view;
+        }        
+        
+        private void CreatePlayerHealth(GameObject go, PlayerModel model, CompositeDisposable disposable)
+        {
+            var playerHealth = new PlayerHealth(model, go);
+            disposable.Add(playerHealth);
         }
     }
 }
