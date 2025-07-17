@@ -1,4 +1,5 @@
-﻿using Game.Level.Input;
+﻿using System;
+using Game.Level.Input;
 using UnityEngine;
 using VContainer;
 
@@ -10,12 +11,18 @@ namespace Game.Level.Player
         
         private PlayerContent _playerContent;
         private IInputService _inputService;
+        private PlayerModel _playerModel;
 
         [Inject]
         public void Construct(PlayerContent playerContent, IInputService inputService)
         {
             _playerContent = playerContent;
             _inputService = inputService;
+        }
+
+        public void BindModel(PlayerModel playerModel)
+        {
+            _playerModel = playerModel;
         }
         
         public void Update()
@@ -24,6 +31,11 @@ namespace Game.Level.Player
             var verticalInput = _inputService.Axis().y;
             Rotate(horizontalInput * _playerContent.RotationSpeed * Time.deltaTime);
             Move(verticalInput * _playerContent.Speed * Time.deltaTime);
+        }
+
+        private void LateUpdate()
+        {
+            _playerModel.UpdatePosition(transform.position);
         }
 
         private void Move(float movement)

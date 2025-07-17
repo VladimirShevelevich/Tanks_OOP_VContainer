@@ -21,14 +21,15 @@ namespace Game.Level.Player
 
         public void CreatePlayer(PlayerModel playerModel, CompositeDisposable disposable)
         {
-            var go = CreateView();
+            var go = CreateView(playerModel);
             disposable.Add(new GameObjectDisposer(go));
         }
 
-        private GameObject CreateView()
+        private GameObject CreateView(PlayerModel playerModel)
         {
             var view = Object.Instantiate(_playerContent.ViewPrefab);
             _objectResolver.InjectGameObject(view);
+            view.GetComponent<PlayerMover>().BindModel(playerModel);
             return view;
         }
     }
