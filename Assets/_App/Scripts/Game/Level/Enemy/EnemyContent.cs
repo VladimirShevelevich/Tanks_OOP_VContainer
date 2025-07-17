@@ -30,5 +30,6 @@ namespace Game.Level.Enemy
         [field: SerializeField] public MovementContent Movement { get; private set; }
         [field: SerializeField] public ShootingContent Shooting { get; private set; }
         [field: SerializeField] public Vector2 SpawnArea { get; private set; }
+        [field: SerializeField] public int DestroyReward { get; private set; }
     }
 }

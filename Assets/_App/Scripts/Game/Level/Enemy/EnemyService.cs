@@ -1,22 +1,27 @@
-﻿using Game.Level.Enemy.Requests;
+﻿using System;
+using Game.Level.Enemy.Requests;
+using Game.Level.Scores;
 using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
 using UnityEngine;
 using VContainer.Unity;
+using Random = UnityEngine.Random;
 
 namespace Game.Level.Enemy
 {
     [UsedImplicitly]
-    public class EnemySpawner : BaseDisposable, IInitializable
+    public class EnemyService : BaseDisposable, IInitializable
     {
         private readonly EnemyFactory _enemyFactory;
         private readonly EnemyContent _enemyContent;
+        private readonly ScoresService _scoresService;
 
-        public EnemySpawner(EnemyFactory enemyFactory, EnemyContent enemyContent)
+        public EnemyService(EnemyFactory enemyFactory, EnemyContent enemyContent, ScoresService scoresService)
         {
             _enemyFactory = enemyFactory;
             _enemyContent = enemyContent;
+            _scoresService = scoresService;
         }
         
         public void Initialize()
@@ -27,13 +32,30 @@ namespace Game.Level.Enemy
 
         private void SpawnEnemy(EnemyContent.EnemyType enemyType)
         {
-            var disposable = new CompositeDisposable();
-            AddDisposable(disposable);
+            var enemyDisposable = new CompositeDisposable();
+            var onDestroyed = new ReactiveCommand();
+            AddDisposable(onDestroyed.Subscribe(_ =>
+            {
+                HandleEnemyDestroyed(enemyDisposable);
+            }));
+            AddDisposable(enemyDisposable);
+            
             _enemyFactory.Create(new CreateEnemyRequest
             {
                 EnemyType = enemyType,
                 Position = RandomPosition()
-            }, disposable);
+            }, enemyDisposable, onDestroyed);
+        }
+
+        private void HandleEnemyDestroyed(IDisposable enemyDisposable)
+        {
+            enemyDisposable.Dispose();
+            AddScores();
+        }
+
+        private void AddScores()
+        {
+            _scoresService.AddScores(_enemyContent.DestroyReward);
         }
 
         private Vector3 RandomPosition()

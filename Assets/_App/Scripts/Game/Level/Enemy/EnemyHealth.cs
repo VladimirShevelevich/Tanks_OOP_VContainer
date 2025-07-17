@@ -11,28 +11,16 @@ namespace Game.Level.Enemy
     [UsedImplicitly]
     public class EnemyHealth : BaseDisposable
     {
-        public IObservable<Unit> OnDisposeInvoked => _onDisposeInvoked;
-        private readonly ReactiveCommand _onDisposeInvoked = new();
+        private readonly EnemyModel _enemyModel;
+        private readonly EnemyAnimator _enemyAnimator;
+        private readonly ReactiveCommand _onDestroyed;
 
-        private readonly ScoresService _scoresService;
-        private EnemyModel _enemyModel;
-        private EnemyAnimator _enemyAnimator;
-
-        public EnemyHealth(ScoresService scoresService)
+        public EnemyHealth(EnemyModel enemyModel, GameObject view, ReactiveCommand onDestroyed)
         {
-            _scoresService = scoresService;
-        }
-        
-        public void BindModel(EnemyModel model)
-        {
-            _enemyModel = model;
-        }
-        
-        public void BindView(GameObject view)
-        {
+            _enemyModel = enemyModel;
+            _onDestroyed = onDestroyed;
             _enemyAnimator = view.GetComponent<EnemyAnimator>();
-            AddDisposable(
-                SubscribeOnProjectileTrigger(view));
+            AddDisposable(SubscribeOnProjectileTrigger(view));
         }
 
         private IDisposable SubscribeOnProjectileTrigger(GameObject view)
@@ -61,10 +49,9 @@ namespace Game.Level.Enemy
 
         private void OnDeath()
         {
-            _scoresService.AddScores(1);
             _enemyAnimator.PlayDestroy(() =>
             {
-                _onDisposeInvoked.Execute();
+                _onDestroyed.Execute();
             });
         }
     }

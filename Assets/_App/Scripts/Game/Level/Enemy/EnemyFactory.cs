@@ -20,11 +20,11 @@ namespace Game.Level.Enemy
             _objectResolver = objectResolver;
         }
 
-        public void Create(CreateEnemyRequest request, CompositeDisposable disposable)
+        public void Create(CreateEnemyRequest request, CompositeDisposable disposable, ReactiveCommand onDestroyed)
         {
             var model = CreateModel();
-            var go = CreateView(request, model, disposable);
-            CreateEnemyHealth(go, model, disposable);
+            var go = CreateView(request, disposable);
+            CreateEnemyHealth(go, model, disposable, onDestroyed);
         }
 
         private EnemyModel CreateModel()
@@ -32,7 +32,7 @@ namespace Game.Level.Enemy
             return _objectResolver.Resolve<EnemyModel>();
         }
 
-        private GameObject CreateView(CreateEnemyRequest request, EnemyModel model, CompositeDisposable disposable)
+        private GameObject CreateView(CreateEnemyRequest request, CompositeDisposable disposable)
         {
             var go = Object.Instantiate(_enemyContent.ViewPrefab, request.Position, Quaternion.identity);
             if (request.EnemyType == EnemyContent.EnemyType.Patrol)
@@ -44,14 +44,10 @@ namespace Game.Level.Enemy
             return go;
         }
 
-        private void CreateEnemyHealth(GameObject go, EnemyModel model, CompositeDisposable disposable)
+        private void CreateEnemyHealth(GameObject go, EnemyModel model, CompositeDisposable disposable, ReactiveCommand onDestroyed)
         {
-            var enemyHealth = _objectResolver.Resolve<EnemyHealth>();
+            var enemyHealth = new EnemyHealth(model, go, onDestroyed);
             disposable.Add(enemyHealth);
-            enemyHealth.BindModel(model);
-            enemyHealth.BindView(go);
-            disposable.Add(
-                enemyHealth.OnDisposeInvoked.Subscribe(_ => disposable.Dispose()));
         }
     }
 }

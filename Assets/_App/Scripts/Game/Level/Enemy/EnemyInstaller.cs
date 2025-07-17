@@ -9,14 +9,11 @@ namespace Game.Level.Enemy
         {
             builder.UseEntryPoints(epBuilder =>
             {
-                epBuilder.Add<EnemySpawner>();
+                epBuilder.Add<EnemyService>();
             });
 
             builder.Register<EnemyFactory>(Lifetime.Scoped);
-            
-            builder.Register<EnemyHealth>(Lifetime.Transient);
             builder.Register<EnemyModel>(Lifetime.Transient);
-            builder.Register<EnemyLifeTime>(Lifetime.Transient);
         }
     }
 }
