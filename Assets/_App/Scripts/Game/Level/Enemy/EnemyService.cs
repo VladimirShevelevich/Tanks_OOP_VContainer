@@ -26,8 +26,7 @@ namespace Game.Level.Enemy
         
         public void Initialize()
         {
-            SpawnEnemy(EnemyContent.EnemyType.Static);
-            SpawnEnemy(EnemyContent.EnemyType.Patrol);
+            SpawnEnemy(RandomEnemyType());
         }
         
         private void SpawnEnemy(EnemyContent.EnemyType enemyType)
@@ -51,6 +50,7 @@ namespace Game.Level.Enemy
         {
             enemyDisposable.Dispose();
             AddScores();
+            SpawnEnemy(RandomEnemyType());
         }
 
         private void AddScores()
@@ -64,6 +64,14 @@ namespace Game.Level.Enemy
                 Random.Range(-_enemyContent.SpawnArea.x, _enemyContent.SpawnArea.x),
                 0,
                 Random.Range(-_enemyContent.SpawnArea.y, _enemyContent.SpawnArea.y));
+        }
+
+        private EnemyContent.EnemyType RandomEnemyType()
+        {
+            var randomValue = Random.value;
+            return randomValue > 0.5 ? 
+                EnemyContent.EnemyType.Static : 
+                EnemyContent.EnemyType.Patrol;
         }
     }
 }

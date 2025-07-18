@@ -9,6 +9,8 @@ namespace Game.Level.Enemy
 {
     public class EnemyPatrolMover : MonoBehaviour
     {
+        [SerializeField] private CharacterController _characterController;
+        
         private Vector3? _targetPosition;
 
         private EnemyContent _enemyContent;

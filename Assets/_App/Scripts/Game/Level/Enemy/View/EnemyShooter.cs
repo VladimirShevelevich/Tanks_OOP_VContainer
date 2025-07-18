@@ -44,7 +44,8 @@ namespace Game.Level.Enemy
         private void RotateTowerToPlayer()
         {
             var playerPosition = _playerService.PlayerModel.CurrentPosition;
-            var targetRotation = Quaternion.LookRotation(playerPosition - _towerTransform.position);
+            var targetPosition = new Vector3(playerPosition.x, _towerTransform.position.y, playerPosition.z);
+            var targetRotation = Quaternion.LookRotation(targetPosition - _towerTransform.position);
             _towerTransform.rotation = Quaternion.Slerp(_towerTransform.rotation, targetRotation,
                 Time.deltaTime * _shootingContent.TowerRotationSpeed);
         }

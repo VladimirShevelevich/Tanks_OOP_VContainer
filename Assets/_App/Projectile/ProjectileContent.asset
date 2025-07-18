@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ProjectileContent
   m_EditorClassIdentifier: 
   <ProjectilePrefab>k__BackingField: {fileID: 1345598376410693894, guid: 4f0478dd25c291b4db30ce261592fc64, type: 3}
-  <Speed>k__BackingField: 15
+  <Speed>k__BackingField: 10
