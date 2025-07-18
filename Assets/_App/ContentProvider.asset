@@ -18,3 +18,4 @@ MonoBehaviour:
   <ProjectileContent>k__BackingField: {fileID: 11400000, guid: df6407332bc449445a347c96ce7dfd9f, type: 2}
   <EnemyContent>k__BackingField: {fileID: 11400000, guid: 974c48f541f67c5449b6e4ff2e3ca01b, type: 2}
   <HudContent>k__BackingField: {fileID: 11400000, guid: 6f94539437e4c2647af3d7d2f1dd8c32, type: 2}
+  <LevelResultUIContent>k__BackingField: {fileID: 11400000, guid: 339c1059d3ec02e4ab3d3fdf36c002a0, type: 2}

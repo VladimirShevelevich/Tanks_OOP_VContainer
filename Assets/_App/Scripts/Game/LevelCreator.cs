@@ -13,6 +13,7 @@ namespace Game
         private readonly LifetimeScope _gameScope;
         private LevelScope _levelScope;
         private readonly LevelConfig[] _levels;
+        private int _currentLevelIndex;
 
         public LevelCreator(LifetimeScope gameScope, LevelConfig[] levels)
         {
@@ -22,15 +23,21 @@ namespace Game
         
         public void Initialize()
         {
-            CreateLevelScope();
+            CreateLevel();
         }
 
         public void TriggerLevelReload()
         {
-            Debug.Log("Level reload");
+            ReloadCurrentLevel();
         }
 
-        private void CreateLevelScope()
+        private void ReloadCurrentLevel()
+        {
+            _levelScope.Dispose();
+            CreateLevel();
+        }
+
+        private void CreateLevel()
         {
             _levelScope = _gameScope.CreateChild<LevelScope>(
                 RegisterLevelConfig);
@@ -38,7 +45,7 @@ namespace Game
 
         private void RegisterLevelConfig(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_levels[0]);
+            builder.RegisterInstance(_levels[_currentLevelIndex]);
         }
     }
 }
