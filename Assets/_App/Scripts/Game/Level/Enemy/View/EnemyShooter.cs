@@ -36,7 +36,7 @@ namespace Game.Level.Enemy
             ExecuteShooting();
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             RotateTowerToPlayer();
         }
@@ -44,12 +44,14 @@ namespace Game.Level.Enemy
         private void RotateTowerToPlayer()
         {
             var playerPosition = _playerService.PlayerModel.CurrentPosition;
-            _towerTransform.LookAt(playerPosition);
+            var targetRotation = Quaternion.LookRotation(playerPosition - _towerTransform.position);
+            _towerTransform.rotation = Quaternion.Slerp(_towerTransform.rotation, targetRotation,
+                Time.deltaTime * _shootingContent.TowerRotationSpeed);
         }
 
         private void ExecuteShooting()
         {
-            Observable.Timer(TimeSpan.FromSeconds(_shootingContent.ShootFrequency)).
+            Observable.Timer(TimeSpan.FromSeconds(_shootingContent.ShootingInterval)).
                 Repeat().
                 Where(x => _levelStateService.CurrentState.Value == LevelStateType.GameLoop).
                 Subscribe(_ => Shoot()).
@@ -58,9 +60,7 @@ namespace Game.Level.Enemy
 
         private void Shoot()
         {
-            var playerPosition = _playerService.PlayerModel.CurrentPosition;
-            var rotation = Quaternion.LookRotation(playerPosition - transform.position);
-            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, rotation, ProjectileSourceType.Enemy);
+            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, _towerTransform.rotation, ProjectileSourceType.Enemy);
             Destroy(projectile.gameObject, 3);
             new GameObjectDisposer(projectile.gameObject).AddTo(this);
         }

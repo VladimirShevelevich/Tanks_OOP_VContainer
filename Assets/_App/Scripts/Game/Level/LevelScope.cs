@@ -8,6 +8,7 @@ using Game.Level.Player;
 using Game.Level.Projectile;
 using Game.Level.ResultScreen;
 using Game.Level.Scores;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -15,7 +16,7 @@ namespace Game.Level
 {
     public class LevelScope : LifetimeScope
     {
-        private LevelConfig _levelConfig;
+        [SerializeField] private LevelConfig _levelConfig;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -23,6 +24,8 @@ namespace Game.Level
             EnemyInstaller.Install(builder);
             HudInstaller.Install(builder);
 
+            builder.RegisterInstance(_levelConfig);
+            
             builder.Register<IInputService, StandaloneInputService>(Lifetime.Scoped);
             builder.Register<ProjectileFactory>(Lifetime.Scoped);
             builder.Register<ScoresService>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Level.Config;
 using Game.Level.Scores;
 using TMPro;
 using UniRx;
@@ -12,11 +13,13 @@ public class ScoresHUD : MonoBehaviour
     [SerializeField] private TMP_Text _valueText;
     
     private IScoresService _scoresService;
+    private LevelConfig _levelConfig;
 
     [Inject]
-    public void Construct(IScoresService scoresService)
+    public void Construct(IScoresService scoresService, LevelConfig levelConfig)
     {
         _scoresService = scoresService;
+        _levelConfig = levelConfig;
     }
 
     private void Start()
@@ -27,6 +30,6 @@ public class ScoresHUD : MonoBehaviour
 
     private void UpdateScore(int newScore)
     {
-        _valueText.text = newScore.ToString();
+        _valueText.text = $"{newScore}/{_levelConfig.ScoreGoal}";
     }
 }

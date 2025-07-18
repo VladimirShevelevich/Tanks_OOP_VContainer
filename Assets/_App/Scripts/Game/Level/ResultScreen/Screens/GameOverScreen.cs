@@ -15,8 +15,7 @@ namespace Game.Level.ResultScreen
         private void Awake()
         {
             _restartButton.OnClickAsObservable().Subscribe(_ => 
-                _onRestartClick.Execute()).
-                AddTo(this);
+                _onRestartClick.Execute()).AddTo(this);
         }
     }
 }

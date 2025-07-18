@@ -6,6 +6,8 @@ namespace Game.Level.Enemy
     [CreateAssetMenu(fileName = "EnemyContent", menuName = "Content/Enemy")]
     public class EnemyContent : ScriptableObject
     {
+        [field: SerializeField] public int InitialHealth { get; private set; }
+
         public enum EnemyType
         {
             Static,
@@ -23,7 +25,8 @@ namespace Game.Level.Enemy
         [Serializable]
         public class ShootingContent
         {
-            [field: SerializeField] public float ShootFrequency { get; private set; }
+            [field: SerializeField] public float ShootingInterval { get; private set; }
+            [field: SerializeField] public float TowerRotationSpeed { get; private set; }
         }
 
         [field: SerializeField] public GameObject ViewPrefab { get; private set; }

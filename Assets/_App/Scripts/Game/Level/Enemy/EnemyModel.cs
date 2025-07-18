@@ -19,7 +19,7 @@ namespace Game.Level.Enemy
 
         private void SetInitialValues()
         {
-            _health = new ReactiveProperty<int>(5);
+            _health = new ReactiveProperty<int>(_enemyContent.InitialHealth);
         }
 
         public void DecreaseHealth(int amount)

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ContentProvider
   m_EditorClassIdentifier: 
   <Levels>k__BackingField:
-  - {fileID: 11400000, guid: 173e52742d250444a870570c6c7cfe22, type: 2}
+  - {fileID: 7634490355973127778, guid: 0ed1b49646ff01d4f9f36fe9dc1243fc, type: 3}
+  - {fileID: 7634490355973127778, guid: da9a0acab43c85447a9a9eeff4ff2174, type: 3}
   <PlayerContent>k__BackingField: {fileID: 11400000, guid: a17a8e1a9333c2d41abdd595f8617622, type: 2}
   <ProjectileContent>k__BackingField: {fileID: 11400000, guid: df6407332bc449445a347c96ce7dfd9f, type: 2}
   <EnemyContent>k__BackingField: {fileID: 11400000, guid: 974c48f541f67c5449b6e4ff2e3ca01b, type: 2}

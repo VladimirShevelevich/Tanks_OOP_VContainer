@@ -48,6 +48,9 @@ namespace Game.Level.ResultScreen
         private void CreateWinScreen()
         {
             var screen = Object.Instantiate(_levelResultUIContent.WinScreenPrefab, _uiCanvas.transform);
+            AddDisposable(screen.OnNextLevelClick.Subscribe(_ => 
+                HandleNextLevelClick()));
+            
             AddDisposable(new GameObjectDisposer(screen.gameObject));
         }
 
@@ -62,7 +65,12 @@ namespace Game.Level.ResultScreen
 
         private void HandleRestartClick()
         {
-            _levelCreator.TriggerLevelReload();
+            _levelCreator.ReloadLevel();
+        }
+
+        private void HandleNextLevelClick()
+        {
+            _levelCreator.LoadNextLevel();
         }
     }
 }

@@ -12,10 +12,10 @@ namespace Game
     {
         private readonly LifetimeScope _gameScope;
         private LevelScope _levelScope;
-        private readonly LevelConfig[] _levels;
+        private readonly LevelScope[] _levels;
         private int _currentLevelIndex;
 
-        public LevelCreator(LifetimeScope gameScope, LevelConfig[] levels)
+        public LevelCreator(LifetimeScope gameScope, LevelScope[] levels)
         {
             _gameScope = gameScope;
             _levels = levels;
@@ -23,29 +23,25 @@ namespace Game
         
         public void Initialize()
         {
-            CreateLevel();
+            CreateLevelByCurrentIndex();
         }
 
-        public void TriggerLevelReload()
+        public void ReloadLevel()
         {
-            ReloadCurrentLevel();
+            CreateLevelByCurrentIndex();
         }
 
-        private void ReloadCurrentLevel()
+        public void LoadNextLevel()
         {
-            _levelScope.Dispose();
-            CreateLevel();
+            _currentLevelIndex++;
+            CreateLevelByCurrentIndex();
         }
-
-        private void CreateLevel()
+        
+        private void CreateLevelByCurrentIndex()
         {
-            _levelScope = _gameScope.CreateChild<LevelScope>(
-                RegisterLevelConfig);
-        }
-
-        private void RegisterLevelConfig(IContainerBuilder builder)
-        {
-            builder.RegisterInstance(_levels[_currentLevelIndex]);
+            _levelScope?.Dispose();
+            var levelPrefab = _levels[_currentLevelIndex % _levels.Length];
+            _levelScope = _gameScope.CreateChildFromPrefab<LevelScope>(levelPrefab);
         }
     }
 }
