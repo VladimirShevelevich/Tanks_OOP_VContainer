@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LevelConfig_1
   m_EditorClassIdentifier: 
   <EnvironmentViewPrefab>k__BackingField: {fileID: 2126349248214622855, guid: 9dcbcc31add2670449d12d748573dd9e, type: 3}
-  <ScoreGoal>k__BackingField: 7
+  <ScoreGoal>k__BackingField: 12
