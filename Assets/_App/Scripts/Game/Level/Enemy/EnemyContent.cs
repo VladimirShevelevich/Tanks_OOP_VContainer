@@ -7,6 +7,7 @@ namespace Game.Level.Enemy
     public class EnemyContent : ScriptableObject
     {
         [field: SerializeField] public int InitialHealth { get; private set; }
+        [field: SerializeField] public int SpawnInterval { get; private set; }
 
         public enum EnemyType
         {

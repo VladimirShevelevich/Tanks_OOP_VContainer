@@ -60,8 +60,10 @@ namespace Game.Level.Enemy
 
         private void Shoot()
         {
-            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, _towerTransform.rotation, ProjectileSourceType.Enemy);
-            Destroy(projectile.gameObject, 3);
+            var rotation = _towerTransform.rotation;
+            rotation.x = 0;
+            var projectile = _projectileFactory.Create(_projectileSpawnPoint.position, rotation, ProjectileSourceType.Enemy);
+            Destroy(projectile.gameObject, 10);
             new GameObjectDisposer(projectile.gameObject).AddTo(this);
         }
     }
