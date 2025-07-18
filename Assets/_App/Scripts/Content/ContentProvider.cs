@@ -3,6 +3,7 @@ using Game.Level.Enemy;
 using Game.Level.HUD;
 using Game.Level.Player;
 using Game.Level.Projectile;
+using Game.Level.ResultScreen;
 using UnityEngine;
 
 namespace Content
@@ -15,5 +16,6 @@ namespace Content
         [field: SerializeField] public ProjectileContent ProjectileContent { get; private set; }
         [field: SerializeField] public EnemyContent EnemyContent { get; private set; }
         [field: SerializeField] public HudContent HudContent { get; private set; }
+        [field: SerializeField] public LevelResultUIContent LevelResultUIContent { get; private set; }
     }
 }

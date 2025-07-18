@@ -9,10 +9,9 @@ using Object = UnityEngine.Object;
 namespace Game.Level.Environment
 {
     [UsedImplicitly]
-    public class EnvironmentPresenter : IInitializable, IDisposable
+    public class EnvironmentPresenter : BaseDisposable, IInitializable
     {
         private readonly LevelConfig _levelConfig;
-        private readonly CompositeDisposable _disposable = new();
 
         public EnvironmentPresenter(LevelConfig levelConfig)
         {
@@ -27,12 +26,7 @@ namespace Game.Level.Environment
         private void CreateView()
         {
             var view = Object.Instantiate(_levelConfig.EnvironmentViewPrefab);
-            _disposable.Add(new GameObjectDisposer(view.gameObject));
-        }
-
-        public void Dispose()
-        {
-            _disposable.Dispose();
+            AddDisposable(new GameObjectDisposer(view.gameObject));
         }
     }
 }

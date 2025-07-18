@@ -1,6 +1,7 @@
 ﻿using Game.Level;
 using Game.Level.Config;
 using JetBrains.Annotations;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -22,6 +23,11 @@ namespace Game
         public void Initialize()
         {
             CreateLevelScope();
+        }
+
+        public void TriggerLevelReload()
+        {
+            Debug.Log("Level reload");
         }
 
         private void CreateLevelScope()

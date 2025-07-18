@@ -14,7 +14,7 @@ namespace Game
         {
             RegisterContent(builder);
             builder.RegisterInstance(_uiCanvas);
-            builder.RegisterEntryPoint<LevelCreator>();
+            builder.RegisterEntryPoint<LevelCreator>().AsSelf();
         }
 
         private void RegisterContent(IContainerBuilder builder)
@@ -24,6 +24,7 @@ namespace Game
             builder.RegisterInstance(_contentProvider.ProjectileContent);
             builder.RegisterInstance(_contentProvider.EnemyContent);
             builder.RegisterInstance(_contentProvider.HudContent);
+            builder.RegisterInstance(_contentProvider.LevelResultUIContent);
         }
     }
 }

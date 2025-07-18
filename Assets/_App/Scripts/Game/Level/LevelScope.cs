@@ -6,6 +6,7 @@ using Game.Level.Input;
 using Game.Level.LevelState;
 using Game.Level.Player;
 using Game.Level.Projectile;
+using Game.Level.ResultScreen;
 using Game.Level.Scores;
 using VContainer;
 using VContainer.Unity;
@@ -28,8 +29,9 @@ namespace Game.Level
             
             builder.UseEntryPoints(epBuilder =>
             {
-                epBuilder.Add<EnvironmentPresenter>();
+                epBuilder.Add<EnvironmentPresenter>().AsSelf();
                 epBuilder.Add<LevelStateService>().AsSelf();
+                epBuilder.Add<ResultScreenPresenter>().AsSelf();
             });
         }
     }
