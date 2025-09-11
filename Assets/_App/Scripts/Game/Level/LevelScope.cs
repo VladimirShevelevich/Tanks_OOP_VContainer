@@ -1,6 +1,7 @@
 ﻿using Game.Level.Config;
 using Game.Level.Enemy;
 using Game.Level.Environment;
+using Game.Level.HealthBar;
 using Game.Level.HUD;
 using Game.Level.Input;
 using Game.Level.LevelState;
@@ -28,6 +29,7 @@ namespace Game.Level
             
             builder.Register<IInputService, StandaloneInputService>(Lifetime.Scoped);
             builder.Register<ProjectileFactory>(Lifetime.Scoped);
+            builder.Register<HealthBarFactory>(Lifetime.Scoped);
             builder.Register<ScoresService>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
             
             builder.UseEntryPoints(epBuilder =>

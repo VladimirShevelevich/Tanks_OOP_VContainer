@@ -1,5 +1,6 @@
 ﻿using Game.Level;
 using Game.Level.Enemy;
+using Game.Level.HealthBar;
 using Game.Level.HUD;
 using Game.Level.Player;
 using Game.Level.Projectile;
@@ -17,5 +18,6 @@ namespace Content
         [field: SerializeField] public EnemyContent EnemyContent { get; private set; }
         [field: SerializeField] public HudContent HudContent { get; private set; }
         [field: SerializeField] public LevelResultUIContent LevelResultUIContent { get; private set; }
+        [field: SerializeField] public HealthBarContent HealthBarContent { get; private set; }
     }
 }
