@@ -14,15 +14,17 @@ namespace Game.Level.HealthBar
             _healthBarContent = healthBarContent;
         }
         
-        public void Create()
-        {
-            var presenter = CreatePresenter();
-        }
-
-        private HealthBarPresenter CreatePresenter()
+        public void CreateHealthBar(Transform targetTransform, IHealthProvider healthProvider)
         {
             var view = CreateView();
-            return new HealthBarPresenter(view, targetTransform, healthProvider);
+            CreatePresenter(targetTransform, healthProvider, view);
+        }
+
+        private void CreatePresenter(Transform targetTransform, IHealthProvider healthProvider,
+            HealthBarView view)
+        {
+            var presenter = new HealthBarPresenter(view, targetTransform, healthProvider);
+            AddDisposable(presenter);
         }
 
         private HealthBarView CreateView()

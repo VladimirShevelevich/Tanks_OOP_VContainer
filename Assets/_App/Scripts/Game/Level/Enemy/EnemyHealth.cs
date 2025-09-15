@@ -39,7 +39,7 @@ namespace Game.Level.Enemy
         private void DecreaseHealth()
         {
             _enemyModel.DecreaseHealth(1);
-            if (_enemyModel.Health.Value > 0)
+            if (_enemyModel.CurrentHealth.Value > 0)
             {
                 _tankAnimator.PlayDamage();
                 return;

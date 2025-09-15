@@ -1,15 +1,18 @@
-﻿using JetBrains.Annotations;
+﻿using Game.Level.HealthBar;
+using JetBrains.Annotations;
 using UniRx;
 using UnityEngine;
 
 namespace Game.Level.Enemy
 {
     [UsedImplicitly]
-    public class EnemyModel
+    public class EnemyModel : IHealthProvider
     {
-        private readonly EnemyContent _enemyContent;
-        public IReadOnlyReactiveProperty<int> Health => _health;
+        public int MaxHealth => _enemyContent.InitialHealth;
+        public IReadOnlyReactiveProperty<int> CurrentHealth => _health;
+        
         private ReactiveProperty<int> _health;
+        private readonly EnemyContent _enemyContent;
 
         public EnemyModel(EnemyContent enemyContent)
         {

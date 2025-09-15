@@ -1,4 +1,5 @@
 ﻿using Game.Level.Enemy.Requests;
+using Game.Level.HealthBar;
 using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
@@ -12,11 +13,13 @@ namespace Game.Level.Enemy
     public class EnemyFactory
     {
         private readonly EnemyContent _enemyContent;
+        private readonly HealthBarFactory _healthBarFactory;
         private readonly IObjectResolver _objectResolver;
 
-        public EnemyFactory(EnemyContent enemyContent, IObjectResolver objectResolver)
+        public EnemyFactory(EnemyContent enemyContent, HealthBarFactory healthBarFactory, IObjectResolver objectResolver)
         {
             _enemyContent = enemyContent;
+            _healthBarFactory = healthBarFactory;
             _objectResolver = objectResolver;
         }
 
@@ -25,6 +28,7 @@ namespace Game.Level.Enemy
             var model = CreateModel();
             var go = CreateView(request, disposable);
             CreateEnemyHealth(go, model, disposable, onDestroyed);
+            CreateHealthBar(go.transform, model);
         }
 
         private EnemyModel CreateModel()
@@ -48,6 +52,11 @@ namespace Game.Level.Enemy
         {
             var enemyHealth = new EnemyHealth(model, go, onDestroyed);
             disposable.Add(enemyHealth);
+        }
+
+        private void CreateHealthBar(Transform targetView, IHealthProvider enemyModel)
+        {
+            _healthBarFactory.CreateHealthBar(targetView, enemyModel);
         }
     }
 }

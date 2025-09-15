@@ -6,7 +6,7 @@ namespace Game.Level.HealthBar
 {
     public class HealthBarPresenter : BaseDisposable
     {
-        private HealthBarView _view;
+        private readonly HealthBarView _view;
         private readonly Transform _targetTransform;
         private readonly IHealthProvider _healthProvider;
 
