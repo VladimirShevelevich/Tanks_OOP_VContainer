@@ -16,20 +16,21 @@ namespace Game.Level.HealthBar
         
         public void CreateHealthBar(Transform targetTransform, IHealthProvider healthProvider)
         {
-            var view = CreateView();
-            CreatePresenter(targetTransform, healthProvider, view);
+            var view = CreateView(targetTransform);
+            CreatePresenter(healthProvider, view);
         }
 
-        private void CreatePresenter(Transform targetTransform, IHealthProvider healthProvider,
+        private void CreatePresenter(IHealthProvider healthProvider,
             HealthBarView view)
         {
-            var presenter = new HealthBarPresenter(view, targetTransform, healthProvider);
+            var presenter = new HealthBarPresenter(view, healthProvider);
             AddDisposable(presenter);
         }
 
-        private HealthBarView CreateView()
+        private HealthBarView CreateView(Transform targetTransform)
         {
             var view = Object.Instantiate(_healthBarContent.ViewPrefab);
+            view.SetTargetTransform(targetTransform);
             AddDisposable(new GameObjectDisposer(view.gameObject));
             return view;
         }

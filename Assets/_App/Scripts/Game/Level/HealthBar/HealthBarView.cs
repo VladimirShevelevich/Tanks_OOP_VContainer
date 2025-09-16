@@ -5,16 +5,35 @@ namespace Game.Level.HealthBar
 {
     public class HealthBarView : MonoBehaviour
     {
-        [SerializeField] private Image _healthBar;
+        [SerializeField] private Image _filler;
         
-        public void SetValue(float value)
+        private Camera _camera;
+        private Transform _targetTransform;
+
+        public void SetTargetTransform(Transform targetTransform)
         {
-            _healthBar.fillAmount = value;
+            _targetTransform = targetTransform;
         }
 
-        public void SetPosition(Vector3 position)
+        public void SetValue(float value)
         {
-            
+            _filler.fillAmount = value;
+        }
+
+        private void Start()
+        {
+            _camera = Camera.main;
+        }
+
+        private void Update()
+        {
+            UpdatePosition();
+        }
+
+        private void UpdatePosition()
+        {
+            transform.position = _targetTransform.position;
+            transform.rotation = Quaternion.LookRotation(_camera.transform.forward, _camera.transform.up);
         }
     }
 }
