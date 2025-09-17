@@ -31,19 +31,19 @@ namespace Game.Level.Enemy
         
         private void SpawnEnemy(EnemyContent.EnemyType enemyType)
         {
-            var enemyDisposable = new CompositeDisposable();
+            var enemyDisposer = new CompositeDisposable();
             var onDestroyed = new ReactiveCommand();
             AddDisposable(onDestroyed.Subscribe(_ =>
             {
-                HandleEnemyDestroyed(enemyDisposable);
+                HandleEnemyDestroyed(enemyDisposer);
             }));
-            AddDisposable(enemyDisposable);
+            AddDisposable(enemyDisposer);
             
             _enemyFactory.Create(new CreateEnemyRequest
             {
                 EnemyType = enemyType,
                 Position = RandomPosition()
-            }, enemyDisposable, onDestroyed);
+            }, enemyDisposer, onDestroyed);
         }
 
         private void HandleEnemyDestroyed(IDisposable enemyDisposable)

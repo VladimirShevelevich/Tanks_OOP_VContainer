@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Tools.Disposable;
+using UniRx;
 using UnityEngine;
 
 namespace Game.Level.HealthBar
@@ -14,24 +15,23 @@ namespace Game.Level.HealthBar
             _healthBarContent = healthBarContent;
         }
         
-        public void CreateHealthBar(Transform targetTransform, IHealthProvider healthProvider)
+        public void CreateHealthBar(Transform targetTransform, IHealthProvider healthProvider, CompositeDisposable disposer)
         {
-            var view = CreateView(targetTransform);
-            CreatePresenter(healthProvider, view);
+            var view = CreateView(targetTransform, disposer);
+            CreatePresenter(healthProvider, view, disposer);
         }
 
-        private void CreatePresenter(IHealthProvider healthProvider,
-            HealthBarView view)
+        private void CreatePresenter(IHealthProvider healthProvider, HealthBarView view, CompositeDisposable disposer)
         {
             var presenter = new HealthBarPresenter(view, healthProvider);
-            AddDisposable(presenter);
+            disposer.Add(presenter);
         }
 
-        private HealthBarView CreateView(Transform targetTransform)
+        private HealthBarView CreateView(Transform targetTransform, CompositeDisposable disposer)
         {
             var view = Object.Instantiate(_healthBarContent.ViewPrefab);
             view.SetTargetTransform(targetTransform);
-            AddDisposable(new GameObjectDisposer(view.gameObject));
+            disposer.Add(new GameObjectDisposer(view.gameObject));
             return view;
         }
     }

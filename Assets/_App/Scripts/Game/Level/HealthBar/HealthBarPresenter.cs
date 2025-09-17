@@ -1,6 +1,5 @@
 ﻿using Tools.Disposable;
 using UniRx;
-using UnityEngine;
 
 namespace Game.Level.HealthBar
 {
@@ -20,7 +19,7 @@ namespace Game.Level.HealthBar
 
         private void OnHealthUpdate(int newHealth)
         {
-            var healthRelative = newHealth / _healthProvider.MaxHealth;
+            var healthRelative = (float)newHealth / _healthProvider.MaxHealth;
             _view.SetValue(healthRelative);
         }
     }

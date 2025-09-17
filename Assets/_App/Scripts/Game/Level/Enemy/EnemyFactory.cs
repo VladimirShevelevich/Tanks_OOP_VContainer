@@ -23,12 +23,12 @@ namespace Game.Level.Enemy
             _objectResolver = objectResolver;
         }
 
-        public void Create(CreateEnemyRequest request, CompositeDisposable disposable, ReactiveCommand onDestroyed)
+        public void Create(CreateEnemyRequest request, CompositeDisposable disposer, ReactiveCommand onDestroyed)
         {
             var model = CreateModel();
-            var go = CreateView(request, disposable);
-            CreateEnemyHealth(go, model, disposable, onDestroyed);
-            CreateHealthBar(go.transform, model);
+            var go = CreateView(request, disposer);
+            CreateEnemyHealth(go, model, disposer, onDestroyed);
+            CreateHealthBar(go.transform, model, disposer);
         }
 
         private EnemyModel CreateModel()
@@ -54,9 +54,9 @@ namespace Game.Level.Enemy
             disposable.Add(enemyHealth);
         }
 
-        private void CreateHealthBar(Transform targetView, IHealthProvider enemyModel)
+        private void CreateHealthBar(Transform targetView, IHealthProvider enemyModel, CompositeDisposable disposer)
         {
-            _healthBarFactory.CreateHealthBar(targetView, enemyModel);
+            _healthBarFactory.CreateHealthBar(targetView, enemyModel, disposer);
         }
     }
 }
