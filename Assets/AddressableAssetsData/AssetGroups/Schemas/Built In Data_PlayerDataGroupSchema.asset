@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9d570cdf42406ea2a03016b4041735, type: 3}
-  m_Name: HealthBarContent
+  m_Script: {fileID: 11500000, guid: b1487f5d688e4f94f828f879d599dbdc, type: 3}
+  m_Name: Built In Data_PlayerDataGroupSchema
   m_EditorClassIdentifier: 
-  <ViewPrefabRef>k__BackingField: {fileID: 1441878024207219536, guid: f97762df016ccec49a0b04577fcd694c, type: 3}
+  m_Group: {fileID: 11400000, guid: 33982ddd2f5fc0d4cb13c8d180238309, type: 2}
+  m_IncludeResourcesFolders: 1
+  m_IncludeBuildSettingsScenes: 1
