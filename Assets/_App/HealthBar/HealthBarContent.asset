@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9d570cdf42406ea2a03016b4041735, type: 3}
   m_Name: HealthBarContent
   m_EditorClassIdentifier: 
-  <ViewPrefabRef>k__BackingField: {fileID: 1441878024207219536, guid: f97762df016ccec49a0b04577fcd694c, type: 3}
+  <ViewPrefabRef>k__BackingField:
+    m_AssetGUID: f97762df016ccec49a0b04577fcd694c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
