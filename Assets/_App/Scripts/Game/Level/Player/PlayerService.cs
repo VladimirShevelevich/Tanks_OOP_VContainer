@@ -31,9 +31,9 @@ namespace Game.Level.Player
 
         private void CreatePlayer(PlayerModel model)
         {
-            var playerDisposable = new CompositeDisposable();
-            AddDisposable(playerDisposable);
-            _playerFactory.CreatePlayer(model, playerDisposable, _onPlayerDeath);
+            var playerDisposer = new CompositeDisposable();
+            AddDisposable(playerDisposer);
+            _playerFactory.CreatePlayer(model, playerDisposer, _onPlayerDeath);
         }
     }
 }

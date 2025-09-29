@@ -1,4 +1,5 @@
 using Content;
+using Game.Popups;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -15,6 +16,8 @@ namespace Game
             RegisterContent(builder);
             builder.RegisterInstance(_uiCanvas);
             builder.RegisterEntryPoint<LevelCreator>().AsSelf();
+            
+            PopupsInstaller.Install(builder);
         }
 
         private void RegisterContent(IContainerBuilder builder)
