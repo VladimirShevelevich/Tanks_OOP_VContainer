@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using UniRx;
 
 namespace Game.Popups
 {
@@ -12,7 +13,7 @@ namespace Game.Popups
             _popupsFactory = popupsFactory;
         }
         
-        public void CreatePopup(PopupType popupType) =>
-            _popupsFactory.CreatePopup(popupType);
+        public void CreatePopup(PopupType popupType, CompositeDisposable disposer) =>
+            _popupsFactory.CreatePopup(popupType, disposer);
     }   
 }

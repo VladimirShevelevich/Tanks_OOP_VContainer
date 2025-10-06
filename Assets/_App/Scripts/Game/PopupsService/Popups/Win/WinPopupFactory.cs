@@ -1,6 +1,7 @@
 ﻿using Game.Level.ResultScreen;
 using JetBrains.Annotations;
 using Tools.Disposable;
+using UniRx;
 using UnityEngine;
 using VContainer;
 
@@ -22,17 +23,17 @@ namespace Game.Popups.PopupFactories
             _levelCreator = levelCreator;
         }
         
-        public void Create()
+        public void Create(CompositeDisposable disposer)
         {
-            var view = CreateView();
+            var view = CreateView(disposer);
             var presenter = new WinPopupPresenter(_levelCreator, view);
-            AddDisposable(presenter);
+            disposer.Add(presenter);
         }
 
-        private WinPopupView CreateView()
+        private WinPopupView CreateView(CompositeDisposable disposer)
         {
             var screen = Object.Instantiate(_popupsContent.WinPopupViewPrefab, _uiCanvas.transform);
-            AddDisposable(new GameObjectDisposer(screen.gameObject));
+            disposer.Add(new GameObjectDisposer(screen.gameObject));
             return screen;
         }
     }

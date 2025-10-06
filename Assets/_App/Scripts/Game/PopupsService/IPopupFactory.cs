@@ -1,7 +1,9 @@
-﻿namespace Game.Popups.PopupFactories
+﻿using UniRx;
+
+namespace Game.Popups.PopupFactories
 {
     public interface IPopupFactory
     {
-        void Create();
+        void Create(CompositeDisposable disposer);
     }
 }

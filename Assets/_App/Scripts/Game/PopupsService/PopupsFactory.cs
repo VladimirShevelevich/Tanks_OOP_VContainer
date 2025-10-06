@@ -1,6 +1,7 @@
 ﻿using System;
 using Game.Popups.PopupFactories;
 using JetBrains.Annotations;
+using UniRx;
 using VContainer;
 
 namespace Game.Popups
@@ -15,11 +16,11 @@ namespace Game.Popups
             _objectResolver = objectResolver;
         }
         
-        public void CreatePopup(PopupType popupType)
+        public void CreatePopup(PopupType popupType, CompositeDisposable disposer)
         {
             var type = FactoryType(popupType);
             var factory = _objectResolver.Resolve(type) as IPopupFactory;
-            factory.Create();
+            factory.Create(disposer);
         }
 
         private Type FactoryType(PopupType popupType)

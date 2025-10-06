@@ -56,13 +56,20 @@ namespace Game.Level.LevelState
         private void SetWin()
         {
             _currentState.Value = LevelStateType.Win;
-            _popupsService.CreatePopup(PopupType.Win);
+            CreateResultPopup(PopupType.Win);
         }
 
         private void SetGameOver()
         {
             _currentState.Value = LevelStateType.GameOver;
-            _popupsService.CreatePopup(PopupType.GameOver);
+            CreateResultPopup(PopupType.GameOver);
+        }
+
+        private void CreateResultPopup(PopupType popupType)
+        {
+            var popupDisposer = new CompositeDisposable();
+            AddDisposable(popupDisposer);
+            _popupsService.CreatePopup(popupType, popupDisposer);
         }
     }
 }
