@@ -36,7 +36,6 @@ namespace Game.Level
             {
                 epBuilder.Add<EnvironmentPresenter>().AsSelf();
                 epBuilder.Add<LevelStateService>().AsSelf();
-                epBuilder.Add<ResultScreenPresenter>().AsSelf();
             });
         }
     }

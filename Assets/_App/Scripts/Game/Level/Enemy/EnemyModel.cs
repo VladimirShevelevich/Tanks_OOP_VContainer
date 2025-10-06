@@ -29,7 +29,6 @@ namespace Game.Level.Enemy
         {
             var newHealth = Mathf.Max(0, _health.Value - amount);
             _health.Value = newHealth;
-            Debug.Log(_health.Value);
         }
     }
 }

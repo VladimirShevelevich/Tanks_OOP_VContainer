@@ -8,10 +8,10 @@ namespace Game.Popups.PopupFactories
     {
         private readonly LevelCreator _levelCreator;
 
-        public WinPopupPresenter(LevelCreator levelCreator, WinScreen winScreen)
+        public WinPopupPresenter(LevelCreator levelCreator, WinPopupView winPopupView)
         {
             _levelCreator = levelCreator;
-            AddDisposable(winScreen.OnNextLevelClick.Subscribe(_ => 
+            AddDisposable(winPopupView.OnNextLevelClick.Subscribe(_ => 
                 HandleNextLevelClick()));
         }
 

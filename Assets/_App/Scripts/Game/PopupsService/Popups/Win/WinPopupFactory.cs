@@ -9,15 +9,15 @@ namespace Game.Popups.PopupFactories
     [UsedImplicitly]
     public class WinPopupFactory : BaseDisposable, IPopupFactory
     {
-        private readonly LevelResultUIContent _levelResultUIContent;
+        private readonly PopupsContent _popupsContent;
         private readonly Canvas _uiCanvas;
         private readonly LevelCreator _levelCreator;
 
-        public WinPopupFactory(LevelResultUIContent levelResultUIContent,
+        public WinPopupFactory(PopupsContent popupsContent,
             Canvas uiCanvas,
             LevelCreator levelCreator)
         {
-            _levelResultUIContent = levelResultUIContent;
+            _popupsContent = popupsContent;
             _uiCanvas = uiCanvas;
             _levelCreator = levelCreator;
         }
@@ -29,9 +29,9 @@ namespace Game.Popups.PopupFactories
             AddDisposable(presenter);
         }
 
-        private WinScreen CreateView()
+        private WinPopupView CreateView()
         {
-            var screen = Object.Instantiate(_levelResultUIContent.WinScreenPrefab, _uiCanvas.transform);
+            var screen = Object.Instantiate(_popupsContent.WinPopupViewPrefab, _uiCanvas.transform);
             AddDisposable(new GameObjectDisposer(screen.gameObject));
             return screen;
         }

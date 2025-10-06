@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 1828639390608481543}
   - component: {fileID: 7608956059886425003}
   m_Layer: 5
-  m_Name: WinScreen
+  m_Name: WinPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

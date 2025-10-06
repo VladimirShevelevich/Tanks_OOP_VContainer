@@ -1,6 +1,7 @@
 ﻿using Game.Level.Config;
 using Game.Level.Player;
 using Game.Level.Scores;
+using Game.Popups;
 using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
@@ -17,12 +18,17 @@ namespace Game.Level.LevelState
         private readonly ScoresService _scoresService;
         private readonly PlayerService _playerService;
         private readonly LevelConfig _levelConfig;
+        private readonly PopupsService _popupsService;
 
-        public LevelStateService(ScoresService scoresService, PlayerService playerService, LevelConfig levelConfig)
+        public LevelStateService(ScoresService scoresService, 
+            PlayerService playerService, 
+            LevelConfig levelConfig,
+            PopupsService popupsService)
         {
             _scoresService = scoresService;
             _playerService = playerService;
             _levelConfig = levelConfig;
+            _popupsService = popupsService;
         }
         
         public void Initialize()
@@ -38,13 +44,25 @@ namespace Game.Level.LevelState
 
         private void HandlePlayerDeath()
         {
-            _currentState.Value = LevelStateType.GameOver;
+            SetGameOver();
         }
 
         private void HandleScoreChange(int newScore)
         {
             if (newScore >= _levelConfig.ScoreGoal)
-                _currentState.Value = LevelStateType.Win;
+                SetWin();
+        }
+
+        private void SetWin()
+        {
+            _currentState.Value = LevelStateType.Win;
+            _popupsService.CreatePopup(PopupType.Win);
+        }
+
+        private void SetGameOver()
+        {
+            _currentState.Value = LevelStateType.GameOver;
+            _popupsService.CreatePopup(PopupType.GameOver);
         }
     }
 }

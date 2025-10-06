@@ -17,7 +17,7 @@ namespace Content
         [field: SerializeField] public ProjectileContent ProjectileContent { get; private set; }
         [field: SerializeField] public EnemyContent EnemyContent { get; private set; }
         [field: SerializeField] public HudContent HudContent { get; private set; }
-        [field: SerializeField] public LevelResultUIContent LevelResultUIContent { get; private set; }
+        [field: SerializeField] public PopupsContent PopupsContent { get; private set; }
         [field: SerializeField] public HealthBarContent HealthBarContent { get; private set; }
     }
 }

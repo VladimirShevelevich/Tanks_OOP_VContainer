@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.Level.ResultScreen
 {
-    public class GameOverScreen : MonoBehaviour
+    public class GameOverPopupView : MonoBehaviour
     {
         public IObservable<Unit> OnRestartClick => _onRestartClick;
         private readonly ReactiveCommand _onRestartClick = new();

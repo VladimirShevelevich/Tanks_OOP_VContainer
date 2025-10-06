@@ -27,7 +27,7 @@ namespace Game
             builder.RegisterInstance(_contentProvider.ProjectileContent);
             builder.RegisterInstance(_contentProvider.EnemyContent);
             builder.RegisterInstance(_contentProvider.HudContent);
-            builder.RegisterInstance(_contentProvider.LevelResultUIContent);
+            builder.RegisterInstance(_contentProvider.PopupsContent);
             builder.RegisterInstance(_contentProvider.HealthBarContent);
         }
     }

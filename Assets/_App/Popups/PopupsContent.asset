@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b381143ff974b89b6f81c742ff6720d, type: 3}
-  m_Name: LevelResultUI
+  m_Name: PopupsContent
   m_EditorClassIdentifier: 
   <WinScreenPrefab>k__BackingField: {fileID: 7608956059886425003, guid: 25d5f492d03b4f24eb3a471646b6f4bb, type: 3}
   <GameOverScreenPrefab>k__BackingField: {fileID: 7628011922728395298, guid: dd4af6bac4467c144ae6380a24b2d17f, type: 3}
