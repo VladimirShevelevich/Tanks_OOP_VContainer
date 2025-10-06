@@ -1,4 +1,5 @@
-﻿using Game.Popups.PopupFactories;
+﻿using Game.Level.ResultScreen;
+using Game.Popups.PopupFactories;
 using VContainer;
 
 namespace Game.Popups
@@ -16,6 +17,7 @@ namespace Game.Popups
         private static void RegisterFactories(IContainerBuilder builder)
         {
             builder.Register<WinPopupFactory>(Lifetime.Singleton);
+            builder.Register<GameOverPopupFactory>(Lifetime.Singleton);
         }
     }
 }

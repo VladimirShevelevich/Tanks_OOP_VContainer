@@ -1,6 +1,6 @@
 ﻿using UniRx;
 
-namespace Game.Popups.PopupFactories
+namespace Game.Popups
 {
     public interface IPopupFactory
     {

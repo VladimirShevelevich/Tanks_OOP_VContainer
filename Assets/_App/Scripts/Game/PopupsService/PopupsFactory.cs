@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Level.ResultScreen;
 using Game.Popups.PopupFactories;
 using JetBrains.Annotations;
 using UniRx;
@@ -30,12 +31,10 @@ namespace Game.Popups
                 case PopupType.Win:
                     return typeof(WinPopupFactory);
                 case PopupType.GameOver:
-                    break;
+                    return typeof(GameOverPopupFactory);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(popupType), popupType, null);
             }
-
-            throw new InvalidOperationException();
         }
     }
 }
