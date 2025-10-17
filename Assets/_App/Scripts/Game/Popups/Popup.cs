@@ -6,8 +6,8 @@ namespace Game.Popups
 {
     public abstract class Popup : MonoBehaviour
     {
-        public IReactiveCommand<Unit> OnClosed => _onClosed;
-        private readonly ReactiveCommand<Unit> _onClosed = new();
+        public IReactiveCommand<Popup> OnClosed => _onClosed;
+        private readonly ReactiveCommand<Popup> _onClosed = new();
         
         [SerializeField] private Transform _root;
         
@@ -15,7 +15,7 @@ namespace Game.Popups
         {
             _root.DOScaleX(0, 0.2f).OnComplete(() =>
             {
-                _onClosed.Execute(Unit.Default);
+                _onClosed.Execute(this);
             }).SetLink(gameObject);
         }
         

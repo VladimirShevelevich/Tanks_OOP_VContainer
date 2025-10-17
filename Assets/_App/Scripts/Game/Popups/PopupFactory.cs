@@ -5,6 +5,6 @@ namespace Game.Popups
 {
     public abstract class PopupFactory : BaseDisposable
     {
-        public abstract void Create(CompositeDisposable disposer);
+        public abstract Popup Create(CompositeDisposable disposer);
     }
 }

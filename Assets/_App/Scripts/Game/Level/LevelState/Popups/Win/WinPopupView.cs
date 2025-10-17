@@ -1,21 +1,32 @@
-﻿using System;
+﻿using Game.Popups;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 namespace Game.Level.ResultScreen
 {
-    public class WinPopupView : MonoBehaviour
+    public class WinPopupView : Popup
     {
-        public IObservable<Unit> OnNextLevelClick => _onNextLevelClick;
-        private readonly ReactiveCommand _onNextLevelClick = new();
-        
         [SerializeField] private Button _nextButton;
+        private LevelCreator _levelCreator;
+
+        [Inject]
+        public void Construct(LevelCreator levelCreator)
+        {
+            _levelCreator = levelCreator;
+        }
 
         private void Awake()
         {
             _nextButton.OnClickAsObservable().Subscribe(_ => 
-                    _onNextLevelClick.Execute()).AddTo(this);
+                    HandleNextLevelClick()).AddTo(this);
         }
+        
+        private void HandleNextLevelClick()
+        {
+            _levelCreator.LoadNextLevel();
+        }
+
     }
 }

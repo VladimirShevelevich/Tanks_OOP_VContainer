@@ -2,6 +2,7 @@
 using Tools.Disposable;
 using UniRx;
 using UnityEngine;
+using VContainer;
 
 namespace Game.Level.ResultScreen
 {
@@ -9,22 +10,20 @@ namespace Game.Level.ResultScreen
     {
         private readonly PopupsContent _popupsContent;
         private readonly Canvas _uiCanvas;
-        private readonly LevelCreator _levelCreator;
+        private readonly IObjectResolver _objectResolver;
 
-        public GameOverPopupFactory(PopupsContent popupsContent,
-            Canvas uiCanvas,
-            LevelCreator levelCreator)
+        public GameOverPopupFactory(PopupsContent popupsContent, Canvas uiCanvas, IObjectResolver objectResolver)
         {
             _popupsContent = popupsContent;
             _uiCanvas = uiCanvas;
-            _levelCreator = levelCreator;
+            _objectResolver = objectResolver;
         }
         
-        public override void Create(CompositeDisposable disposer)
+        public override Popup Create(CompositeDisposable disposer)
         {
             var view = CreateView(disposer);
-            var presenter = new GameOverPopupPresenter(_levelCreator, view);
-            disposer?.Add(presenter);
+            _objectResolver.Inject(view);
+            return view;
         }
         
         private GameOverPopupView CreateView(CompositeDisposable disposer)

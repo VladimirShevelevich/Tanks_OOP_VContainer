@@ -1,21 +1,32 @@
-﻿using System;
+﻿using Game.Popups;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 namespace Game.Level.ResultScreen
 {
-    public class GameOverPopupView : MonoBehaviour
+    public class GameOverPopupView : Popup
     {
-        public IObservable<Unit> OnRestartClick => _onRestartClick;
-        private readonly ReactiveCommand _onRestartClick = new();
-        
         [SerializeField] private Button _restartButton;
+        private LevelCreator _levelCreator;
 
+        [Inject]
+        public void Construct(LevelCreator levelCreator)
+        {
+            _levelCreator = levelCreator;
+        }
+        
         private void Awake()
         {
             _restartButton.OnClickAsObservable().Subscribe(_ => 
-                _onRestartClick.Execute()).AddTo(this);
+                HandleRestartLevelClick()).AddTo(this);
         }
+        
+        private void HandleRestartLevelClick()
+        {
+            _levelCreator.ReloadLevel();
+        }
+
     }
 }
