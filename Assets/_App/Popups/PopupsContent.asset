@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b381143ff974b89b6f81c742ff6720d, type: 3}
   m_Name: PopupsContent
   m_EditorClassIdentifier: 
-  <WinPopupViewPrefab>k__BackingField: {fileID: 7608956059886425003, guid: 25d5f492d03b4f24eb3a471646b6f4bb, type: 3}
-  <GameOverPopupViewPrefab>k__BackingField: {fileID: 7628011922728395298, guid: dd4af6bac4467c144ae6380a24b2d17f, type: 3}
+  WinPopupPrefab: {fileID: 7608956059886425003, guid: 25d5f492d03b4f24eb3a471646b6f4bb, type: 3}
+  GameOverPopupPrefab: {fileID: 7628011922728395298, guid: dd4af6bac4467c144ae6380a24b2d17f, type: 3}
+  SettingsPopupPrefab: {fileID: -338917651758780031, guid: 0224de0307baa4849acb0bf9f7a583f2, type: 3}
