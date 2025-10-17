@@ -10,8 +10,8 @@ namespace Game.Popups
         private readonly ReactiveCommand<Popup> _onClosed = new();
         
         [SerializeField] private Transform _root;
-        
-        public virtual void Close()
+
+        protected virtual void Close()
         {
             _root.DOScaleX(0, 0.2f).OnComplete(() =>
             {

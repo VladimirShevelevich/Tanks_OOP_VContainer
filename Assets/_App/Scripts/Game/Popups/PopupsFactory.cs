@@ -31,7 +31,7 @@ namespace Game.Popups
         {
             var prefab = _popupsContent.PopupByType(popupType);
             var screen = Object.Instantiate(prefab, _uiCanvas.transform);
-            disposer.Add(new GameObjectDisposer(screen.gameObject));
+            disposer?.Add(new GameObjectDisposer(screen.gameObject));
             return screen;
         }
 

@@ -2,7 +2,9 @@
 {
     public enum PopupType
     {
+        None,
         Win,
-        GameOver
+        GameOver,
+        Settings
     }
 }

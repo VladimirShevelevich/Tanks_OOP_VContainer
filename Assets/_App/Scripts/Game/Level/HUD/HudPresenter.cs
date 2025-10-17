@@ -1,7 +1,5 @@
-﻿using Game.Level.Enemy;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Tools.Disposable;
-using UnityEngine;
 using VContainer.Unity;
 
 namespace Game.Level.HUD
@@ -23,7 +21,8 @@ namespace Game.Level.HUD
         
         private void CreateView()
         {
-            _hudFactory.CreateHud();
+            var hud = _hudFactory.CreateHud();
+            AddDisposable(new GameObjectDisposer(hud));
         }
     }
 }

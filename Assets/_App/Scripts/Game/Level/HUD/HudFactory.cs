@@ -20,11 +20,11 @@ namespace Game.Level.HUD
             _uiCanvas = uiCanvas;
         }
 
-        public void CreateHud()
+        public GameObject CreateHud()
         {
             var go = Object.Instantiate(_hudContent.HudPrefab, _uiCanvas.transform);
             _objectResolver.InjectGameObject(go);
-            AddDisposable(new GameObjectDisposer(go));
+            return go;
         }
     }
 }
