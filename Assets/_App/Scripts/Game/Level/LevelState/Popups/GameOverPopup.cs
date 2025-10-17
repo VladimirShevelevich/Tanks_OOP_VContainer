@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
-namespace Game.Level.ResultScreen
+namespace Game.Level.LevelState
 {
-    public class WinPopupView : Popup
+    public class GameOverPopup : Popup
     {
-        [SerializeField] private Button _nextButton;
+        [SerializeField] private Button _restartButton;
         private LevelCreator _levelCreator;
 
         [Inject]
@@ -16,16 +16,16 @@ namespace Game.Level.ResultScreen
         {
             _levelCreator = levelCreator;
         }
-
+        
         private void Awake()
         {
-            _nextButton.OnClickAsObservable().Subscribe(_ => 
-                    HandleNextLevelClick()).AddTo(this);
+            _restartButton.OnClickAsObservable().Subscribe(_ => 
+                HandleRestartLevelClick()).AddTo(this);
         }
         
-        private void HandleNextLevelClick()
+        private void HandleRestartLevelClick()
         {
-            _levelCreator.LoadNextLevel();
+            _levelCreator.ReloadLevel();
         }
 
     }

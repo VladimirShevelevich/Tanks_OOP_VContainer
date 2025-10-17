@@ -15,7 +15,8 @@ namespace Tools.Disposable
 
         public void Dispose()
         {
-            Object.Destroy(_gameObject);
+            if (_gameObject != null)
+                Object.Destroy(_gameObject);
         }
     }
 }

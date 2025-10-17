@@ -4,7 +4,7 @@ using Game.Level.HealthBar;
 using Game.Level.HUD;
 using Game.Level.Player;
 using Game.Level.Projectile;
-using Game.Level.ResultScreen;
+using Game.Popups;
 using UnityEngine;
 
 namespace Content

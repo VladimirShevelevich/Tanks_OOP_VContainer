@@ -17,9 +17,8 @@ namespace Game.Popups
         
         public void CreatePopup(PopupType popupType, CompositeDisposable disposer = null)
         {
-            var popup = _popupsFactory.CreatePopup(popupType, disposer);
-            AddDisposable(
-                popup.OnClosed.Subscribe(DisposePopup));
+            var popup = _popupsFactory.Create(popupType, disposer);
+            AddDisposable(popup.OnClosed.Subscribe(DisposePopup));
         }
 
         private void DisposePopup(Popup popup) =>

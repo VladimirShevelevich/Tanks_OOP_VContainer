@@ -7,7 +7,6 @@ using Game.Level.Input;
 using Game.Level.LevelState;
 using Game.Level.Player;
 using Game.Level.Projectile;
-using Game.Level.ResultScreen;
 using Game.Level.Scores;
 using UnityEngine;
 using VContainer;
