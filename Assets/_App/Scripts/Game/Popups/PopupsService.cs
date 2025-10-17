@@ -13,7 +13,7 @@ namespace Game.Popups
             _popupsFactory = popupsFactory;
         }
         
-        public void CreatePopup(PopupType popupType, CompositeDisposable disposer) =>
+        public void CreatePopup(PopupType popupType, CompositeDisposable disposer = null) =>
             _popupsFactory.CreatePopup(popupType, disposer);
     }   
 }

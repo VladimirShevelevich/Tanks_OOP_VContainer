@@ -3,12 +3,11 @@ using JetBrains.Annotations;
 using Tools.Disposable;
 using UniRx;
 using UnityEngine;
-using VContainer;
 
 namespace Game.Popups.PopupFactories
 {
     [UsedImplicitly]
-    public class WinPopupFactory : BaseDisposable, IPopupFactory
+    public class WinPopupFactory : PopupFactory
     {
         private readonly PopupsContent _popupsContent;
         private readonly Canvas _uiCanvas;
@@ -23,11 +22,11 @@ namespace Game.Popups.PopupFactories
             _levelCreator = levelCreator;
         }
         
-        public void Create(CompositeDisposable disposer)
+        public override void Create(CompositeDisposable disposer)
         {
             var view = CreateView(disposer);
             var presenter = new WinPopupPresenter(_levelCreator, view);
-            disposer.Add(presenter);
+            disposer?.Add(presenter);
         }
 
         private WinPopupView CreateView(CompositeDisposable disposer)

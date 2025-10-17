@@ -8,7 +8,7 @@ namespace Game.Popups
     {
         public static void Install(IContainerBuilder builder)
         {
-            builder.Register<PopupsService>(Lifetime.Singleton);
+            builder.Register<Popups.PopupsService>(Lifetime.Singleton);
             builder.Register<PopupsFactory>(Lifetime.Singleton);
 
             RegisterFactories(builder);

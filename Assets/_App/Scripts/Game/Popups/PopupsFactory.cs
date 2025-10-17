@@ -20,7 +20,7 @@ namespace Game.Popups
         public void CreatePopup(PopupType popupType, CompositeDisposable disposer)
         {
             var type = FactoryType(popupType);
-            var factory = _objectResolver.Resolve(type) as IPopupFactory;
+            var factory = _objectResolver.Resolve(type) as PopupFactory;
             factory.Create(disposer);
         }
 

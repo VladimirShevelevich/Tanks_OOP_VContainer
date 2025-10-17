@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Level.ResultScreen
 {
-    public class GameOverPopupFactory : IPopupFactory
+    public class GameOverPopupFactory : PopupFactory
     {
         private readonly PopupsContent _popupsContent;
         private readonly Canvas _uiCanvas;
@@ -20,11 +20,11 @@ namespace Game.Level.ResultScreen
             _levelCreator = levelCreator;
         }
         
-        public void Create(CompositeDisposable disposer)
+        public override void Create(CompositeDisposable disposer)
         {
             var view = CreateView(disposer);
             var presenter = new GameOverPopupPresenter(_levelCreator, view);
-            disposer.Add(presenter);
+            disposer?.Add(presenter);
         }
         
         private GameOverPopupView CreateView(CompositeDisposable disposer)

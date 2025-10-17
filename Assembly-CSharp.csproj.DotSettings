@@ -4,5 +4,7 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005C_005Fapp_005Cscripts/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005C_005Fapp_005Cscripts_005Cgame_005Clevel_005Cenemy_005Cview/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005C_005Fapp_005Cscripts_005Cgame_005Clevel_005Cenvironment/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005C_005Fapp_005Cscripts_005Cgame_005Clevel_005Clevelstate_005Cpopups/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005C_005Fapp_005Cscripts_005Cgame_005Clevel_005Clevelstate_005Cpopups_005Cwin/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005C_005Fapp_005Cscripts_005Cgame_005Clevel_005Cresultscreen_005Cscreens/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005C_005Fapp_005Cscripts_005Cgame_005Cpopupsservice_005Cpopups_005Cwin/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
