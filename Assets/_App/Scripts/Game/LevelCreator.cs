@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Analytics;
 using Game.Level;
 using Game.Level.Config;
 using JetBrains.Annotations;
@@ -10,7 +11,7 @@ using VContainer.Unity;
 namespace Game
 {
     [UsedImplicitly]
-    public class LevelCreator : IInitializable
+    public class LevelCreator : IInitializable, IAnalyticsContextProvider
     {
         private readonly LifetimeScope _gameScope;
         private LevelScope _levelScope;
@@ -44,6 +45,11 @@ namespace Game
             _levelScope?.Dispose();
             var levelPrefab = _levels[_currentLevelIndex % _levels.Length];
             _levelScope = _gameScope.CreateChildFromPrefab<LevelScope>(levelPrefab);
+        }
+
+        void IAnalyticsContextProvider.UpdateAnalyticsContext(AnalyticsContext context)
+        {
+            context.Level = _currentLevelIndex;
         }
     }
 }

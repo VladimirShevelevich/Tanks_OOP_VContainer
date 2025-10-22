@@ -1,4 +1,5 @@
 using Content;
+using Game.Analytics;
 using Game.Popups;
 using Game.Settings;
 using UnityEngine;
@@ -17,7 +18,8 @@ namespace Game
             RegisterContent(builder);
             builder.RegisterInstance(_uiCanvas);
             builder.RegisterEntryPoint<LevelCreator>().AsSelf();
-            
+            builder.Register<AnalyticsService>(Lifetime.Singleton);
+
             PopupsInstaller.Install(builder);
             SettingsInstaller.Install(builder);
         }
