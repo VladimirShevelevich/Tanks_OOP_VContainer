@@ -10,13 +10,13 @@ namespace Game.Level.HUD.Views
     {
         [SerializeField] private Image _healthBar;
         
-        private PlayerContent _playerContent;
+        private PlayerContent _playerBaseContent;
         private PlayerService _playerService;
 
         [Inject]
         public void Construct(PlayerContent playerContent, PlayerService playerService)
         {
-            _playerContent = playerContent;
+            _playerBaseContent = playerContent;
             _playerService = playerService;
         }
 
@@ -33,7 +33,7 @@ namespace Game.Level.HUD.Views
 
         private void UpdateHealthBar(int health)
         {
-            var healthRelative = (float)health / _playerContent.InitialHealth;
+            var healthRelative = (float)health / _playerBaseContent.InitialHealth;
             _healthBar.fillAmount = healthRelative;
         }
     }

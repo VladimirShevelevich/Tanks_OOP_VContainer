@@ -11,12 +11,12 @@ namespace Game.Level.Player
     public class PlayerFactory
     {
         private readonly IObjectResolver _objectResolver;
-        private readonly PlayerContent _playerContent;
+        private readonly PlayerContent _playerBaseContent;
 
         public PlayerFactory(IObjectResolver objectResolver, PlayerContent playerContent)
         {
             _objectResolver = objectResolver;
-            _playerContent = playerContent;
+            _playerBaseContent = playerContent;
         }
 
         public void CreatePlayer(PlayerModel playerModel, CompositeDisposable playerDisposer, ReactiveCommand onPlayerDeath)
@@ -28,7 +28,7 @@ namespace Game.Level.Player
 
         private GameObject CreateView(PlayerModel playerModel)
         {
-            var view = Object.Instantiate(_playerContent.ViewPrefab);
+            var view = Object.Instantiate(_playerBaseContent.ViewPrefab);
             _objectResolver.InjectGameObject(view);
             view.GetComponent<PlayerMover>().BindModel(playerModel);
             return view;

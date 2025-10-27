@@ -17,8 +17,8 @@ namespace Game
         {
             RegisterContent(builder);
             builder.RegisterInstance(_uiCanvas);
-            builder.RegisterEntryPoint<LevelCreator>().AsSelf();
             builder.Register<AnalyticsService>(Lifetime.Singleton);
+            builder.Register<LevelCreator>(Lifetime.Singleton).AsSelf();
 
             PopupsInstaller.Install(builder);
             SettingsInstaller.Install(builder);
@@ -33,6 +33,11 @@ namespace Game
             builder.RegisterInstance(_contentProvider.HudContent);
             builder.RegisterInstance(_contentProvider.PopupsContent);
             builder.RegisterInstance(_contentProvider.HealthBarContent);
+        }
+
+        private void RegisterInitializable()
+        {
+            
         }
     }
 }

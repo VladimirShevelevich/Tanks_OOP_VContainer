@@ -10,7 +10,7 @@ namespace Game.Level.Player
     {
         [SerializeField] private CharacterController _characterController;
         
-        private PlayerContent _playerContent;
+        private PlayerContent _playerBaseContent;
         private IInputService _inputService;
         private PlayerModel _playerModel;
         private LevelStateService _levelStateService;
@@ -18,7 +18,7 @@ namespace Game.Level.Player
         [Inject]
         public void Construct(PlayerContent playerContent, IInputService inputService, LevelStateService levelStateService)
         {
-            _playerContent = playerContent;
+            _playerBaseContent = playerContent;
             _inputService = inputService;
             _levelStateService = levelStateService;
         }
@@ -38,8 +38,8 @@ namespace Game.Level.Player
         {
             var horizontalInput = _inputService.Axis().x;
             var verticalInput = _inputService.Axis().y;
-            Rotate(horizontalInput * _playerContent.RotationSpeed * Time.deltaTime);
-            Move(verticalInput * _playerContent.Speed * Time.deltaTime);
+            Rotate(horizontalInput * _playerBaseContent.RotationSpeed * Time.deltaTime);
+            Move(verticalInput * _playerBaseContent.Speed * Time.deltaTime);
         }
 
         private void LateUpdate()
