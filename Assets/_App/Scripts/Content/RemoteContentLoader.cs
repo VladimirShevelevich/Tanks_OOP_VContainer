@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -22,15 +23,21 @@ namespace Content
         {
             try
             {
-                var contentJson = await Resources.LoadAsync(CONTENT_PATH);
-                var json = ((TextAsset)contentJson).text;
-                var remoteContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                var remoteContent = await LoadRemoteContent();
                 _contentProvider.ApplyRemoteContent(remoteContent);
             }
             catch (Exception e)
             {
                 Debug.Log($"Failed to load remote content. {e}");
             }
+        }
+
+        private static async Task<Dictionary<string, string>> LoadRemoteContent()
+        {
+            var contentJson = await Resources.LoadAsync(CONTENT_PATH);
+            var json = ((TextAsset)contentJson).text;
+            var remoteContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            return remoteContent;
         }
     }
 }

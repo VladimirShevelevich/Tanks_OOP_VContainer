@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Level;
 using Game.Level.Enemy;
 using Game.Level.HealthBar;
@@ -23,7 +24,14 @@ namespace Content
 
         public void ApplyRemoteContent(Dictionary<string, string> remoteContent)
         {
-            PlayerContent.ApplyRemoteContent(remoteContent);
+            try
+            {
+                PlayerContent.ApplyRemoteContent(remoteContent);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
         }
     }
 }
