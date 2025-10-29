@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerContent
   m_EditorClassIdentifier: 
   Remote:
-    <Speed>k__BackingField: 1
+    Speed: 5
   <ViewPrefab>k__BackingField: {fileID: 3959131172394410192, guid: ac12c4cb65072ac428bf81088002874a, type: 3}
   <RotationSpeed>k__BackingField: 65
   <InitialHealth>k__BackingField: 10

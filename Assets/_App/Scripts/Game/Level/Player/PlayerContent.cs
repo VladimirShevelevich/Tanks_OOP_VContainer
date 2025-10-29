@@ -18,6 +18,6 @@ namespace Game.Level.Player
     [Serializable]
     public class PlayerRemoteContent : RemoteContent
     {
-        [field: SerializeField] public float Speed { get; private set; }
+        public float Speed;
     }
 }

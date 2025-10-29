@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Content
@@ -20,7 +21,7 @@ namespace Content
         {
             var contentJson = await Resources.LoadAsync(CONTENT_PATH);
             var json = ((TextAsset)contentJson).text;
-            var remoteContent = .FromJson<Dictionary<string, string>>(json);
+            var remoteContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             _contentProvider.ApplyRemoteContent(remoteContent);
         }
     }

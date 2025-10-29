@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Level.Player;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Content
@@ -17,7 +19,7 @@ namespace Content
                 throw new Exception($"Remote content apply failed. Content key isn't found: {RemoteContentKey}");
             }
 
-            var remoteContent = JsonUtility.FromJson<T>(remoteContentJson);
+            var remoteContent = JsonConvert.DeserializeObject<T>(remoteContentJson);
             if (remoteContent == null)
             {
                 throw new Exception($"Remote content apply failed. Deserialization failed. Content key: {RemoteContentKey}");
