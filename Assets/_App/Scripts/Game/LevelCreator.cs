@@ -11,7 +11,7 @@ using VContainer.Unity;
 namespace Game
 {
     [UsedImplicitly]
-    public class LevelCreator : IAnalyticsContextProvider
+    public class LevelCreator : IAnalyticsContextProvider, IInitializable
     {
         private readonly LifetimeScope _gameScope;
         private LevelScope _levelScope;
@@ -24,7 +24,7 @@ namespace Game
             _levels = levels;
         }
         
-        public void Init()
+        public void Initialize()
         {
             CreateLevelByCurrentIndex();
         }

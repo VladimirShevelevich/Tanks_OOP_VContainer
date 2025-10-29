@@ -18,10 +18,11 @@ namespace Game
             RegisterContent(builder);
             builder.RegisterInstance(_uiCanvas);
             builder.Register<AnalyticsService>(Lifetime.Singleton);
-            builder.Register<LevelCreator>(Lifetime.Singleton).AsSelf();
 
             PopupsInstaller.Install(builder);
             SettingsInstaller.Install(builder);
+            
+            RegisterInitializable(builder);
         }
 
         private void RegisterContent(IContainerBuilder builder)
@@ -35,9 +36,12 @@ namespace Game
             builder.RegisterInstance(_contentProvider.HealthBarContent);
         }
 
-        private void RegisterInitializable()
+        private void RegisterInitializable(IContainerBuilder builder)
         {
-            
+            builder.UseEntryPoints(ep =>
+            {
+                ep.Add<LevelCreator>();
+            });
         }
     }
 }
