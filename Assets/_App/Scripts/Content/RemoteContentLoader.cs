@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -17,12 +18,19 @@ namespace Content
             _contentProvider = contentProvider;
         }
 
-        public async void Load()
+        public async UniTask LoadAsync()
         {
-            var contentJson = await Resources.LoadAsync(CONTENT_PATH);
-            var json = ((TextAsset)contentJson).text;
-            var remoteContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            _contentProvider.ApplyRemoteContent(remoteContent);
+            try
+            {
+                var contentJson = await Resources.LoadAsync(CONTENT_PATH);
+                var json = ((TextAsset)contentJson).text;
+                var remoteContent = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                _contentProvider.ApplyRemoteContent(remoteContent);
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"Failed to load remote content. {e}");
+            }
         }
     }
 }

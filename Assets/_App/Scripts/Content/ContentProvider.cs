@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Game.Level;
 using Game.Level.Enemy;
 using Game.Level.HealthBar;
@@ -26,6 +25,5 @@ namespace Content
         {
             PlayerContent.ApplyRemoteContent(remoteContent);
         }
-        
     }
 }

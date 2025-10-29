@@ -19,6 +19,7 @@ namespace Game
             builder.RegisterInstance(_uiCanvas);
             builder.Register<AnalyticsService>(Lifetime.Singleton);
             builder.Register<RemoteContentLoader>(Lifetime.Singleton);
+            builder.Register<LevelCreator>(Lifetime.Singleton);
 
             PopupsInstaller.Install(builder);
             SettingsInstaller.Install(builder);
@@ -42,7 +43,6 @@ namespace Game
         {
             builder.UseEntryPoints(ep =>
             {
-                ep.Add<LevelCreator>().AsSelf();
                 ep.Add<InitializationQueue>();
             });
         }

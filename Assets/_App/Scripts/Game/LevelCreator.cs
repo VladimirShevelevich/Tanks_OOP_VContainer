@@ -6,7 +6,7 @@ using VContainer.Unity;
 namespace Game
 {
     [UsedImplicitly]
-    public class LevelCreator : IAnalyticsContextProvider, IInitializable
+    public class LevelCreator : IAnalyticsContextProvider
     {
         private readonly LifetimeScope _gameScope;
         private LevelScope _levelScope;
