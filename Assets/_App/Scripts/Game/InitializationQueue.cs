@@ -17,16 +17,22 @@ namespace Game
             _levelCreator = levelCreator;
             _remoteContentLoader = remoteContentLoader;
         }
-        
-        public async void Initialize()
-        {
-            var asyncInitOperations = new List<UniTask>
-            {
-                InitRemoteContentLoader()
-            };
 
-            await UniTask.WhenAll(asyncInitOperations);
+        public void Initialize()
+        {
+            InitializeAsync();
+        }
+        
+        private async UniTask InitializeAsync()
+        {
+            await InitAsyncOperations();
             _levelCreator.Initialize();
+        }
+
+        private async UniTask InitAsyncOperations()
+        {
+            await UniTask.WhenAll(
+                InitRemoteContentLoader());
         }
         
         private async UniTask InitRemoteContentLoader()
