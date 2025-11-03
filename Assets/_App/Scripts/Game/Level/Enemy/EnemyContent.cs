@@ -1,10 +1,11 @@
 ﻿using System;
+using Content;
 using UnityEngine;
 
 namespace Game.Level.Enemy
 {
     [CreateAssetMenu(fileName = "EnemyContent", menuName = "Content/Enemy")]
-    public class EnemyContent : ScriptableObject
+    public class EnemyContent : BaseContent
     {
         [field: SerializeField] public int InitialHealth { get; private set; }
         [field: SerializeField] public int SpawnInterval { get; private set; }

@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66a4438250e4d5590197faf04a48c73, type: 3}
   m_Name: ContentProvider
   m_EditorClassIdentifier: 
-  <Levels>k__BackingField:
-  - {fileID: 7634490355973127778, guid: 0ed1b49646ff01d4f9f36fe9dc1243fc, type: 3}
-  - {fileID: 7634490355973127778, guid: da9a0acab43c85447a9a9eeff4ff2174, type: 3}
-  <PlayerContent>k__BackingField: {fileID: 11400000, guid: a17a8e1a9333c2d41abdd595f8617622, type: 2}
-  <ProjectileContent>k__BackingField: {fileID: 11400000, guid: df6407332bc449445a347c96ce7dfd9f, type: 2}
-  <EnemyContent>k__BackingField: {fileID: 11400000, guid: 974c48f541f67c5449b6e4ff2e3ca01b, type: 2}
-  <HudContent>k__BackingField: {fileID: 11400000, guid: 6f94539437e4c2647af3d7d2f1dd8c32, type: 2}
-  <PopupsContent>k__BackingField: {fileID: 11400000, guid: 339c1059d3ec02e4ab3d3fdf36c002a0, type: 2}
-  <HealthBarContent>k__BackingField: {fileID: 11400000, guid: ebec876bd8e2f1e47a5a7346ca5e3c46, type: 2}
+  _contents:
+  - {fileID: 11400000, guid: a17a8e1a9333c2d41abdd595f8617622, type: 2}
+  - {fileID: 11400000, guid: ebec876bd8e2f1e47a5a7346ca5e3c46, type: 2}
+  - {fileID: 11400000, guid: 974c48f541f67c5449b6e4ff2e3ca01b, type: 2}
+  - {fileID: 11400000, guid: 6f94539437e4c2647af3d7d2f1dd8c32, type: 2}
+  - {fileID: 11400000, guid: 339c1059d3ec02e4ab3d3fdf36c002a0, type: 2}
+  - {fileID: 11400000, guid: df6407332bc449445a347c96ce7dfd9f, type: 2}
+  - {fileID: 11400000, guid: 70e4d37919ea89b43b66731a33bb8358, type: 2}

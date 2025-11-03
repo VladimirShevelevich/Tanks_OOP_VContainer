@@ -1,4 +1,5 @@
 ﻿using System;
+using Content;
 using Game.Level.LevelState;
 using Game.Settings;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Game.Popups
 {
     [CreateAssetMenu(fileName = "PopupsContent", menuName = "Content/Popups")]
-    public class PopupsContent : ScriptableObject
+    public class PopupsContent : BaseContent
     {
         [SerializeField] private WinPopup WinPopupPrefab;
         [SerializeField] private GameOverPopup GameOverPopupPrefab;

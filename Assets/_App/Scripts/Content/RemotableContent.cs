@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Content
 {
     [CreateAssetMenu(menuName = "Create Content", fileName = "Content", order = 0)]
-    public abstract class RemotableContent<T> : ScriptableObject where T : RemoteContent
+    public abstract class RemotableContent<T> : BaseContent where T : RemoteContent
     {
         [SerializeField] protected T Remote;
         protected abstract string RemoteContentKey { get; }

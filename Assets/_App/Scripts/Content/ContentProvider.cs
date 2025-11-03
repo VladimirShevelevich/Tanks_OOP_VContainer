@@ -1,37 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using Game.Level;
-using Game.Level.Enemy;
-using Game.Level.HealthBar;
-using Game.Level.HUD;
-using Game.Level.Player;
-using Game.Level.Projectile;
-using Game.Popups;
 using UnityEngine;
+using VContainer;
 
 namespace Content
 {
     [CreateAssetMenu(fileName = "ContentProvider", menuName = "Content/ContentProvider")]
     public class ContentProvider : ScriptableObject
     {
-        [field: SerializeField] public LevelScope[] Levels { get; private set; }
-        [field: SerializeField] public PlayerContent PlayerContent { get; set; }
-        [field: SerializeField] public ProjectileContent ProjectileContent { get; private set; }
-        [field: SerializeField] public EnemyContent EnemyContent { get; private set; }
-        [field: SerializeField] public HudContent HudContent { get; private set; }
-        [field: SerializeField] public PopupsContent PopupsContent { get; private set; }
-        [field: SerializeField] public HealthBarContent HealthBarContent { get; private set; }
+        [SerializeField] private BaseContent[] _contents;
 
         public void ApplyRemoteContent(Dictionary<string, string> remoteContent)
         {
-            try
+            foreach (var content in _contents)
             {
-                PlayerContent.ApplyRemoteContent(remoteContent);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e.Message);
+                if (content is not RemotableContent<RemoteContent> remotable) 
+                    continue;
+                
+                try
+                {
+                    remotable.ApplyRemoteContent(remoteContent);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e);
+                }
             }
         }
+
+        public void RegisterContent(IContainerBuilder builder)
+        {
+            foreach (var content in _contents)
+            {
+                var type = content.GetType();
+                builder.RegisterInstance(content).As(type);
+            }
+        }
+    }
+
+    public class BaseContent : ScriptableObject
+    {
+            
     }
 }

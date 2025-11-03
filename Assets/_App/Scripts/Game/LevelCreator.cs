@@ -13,10 +13,10 @@ namespace Game
         private readonly LevelScope[] _levels;
         private int _currentLevelIndex;
 
-        public LevelCreator(LifetimeScope gameScope, LevelScope[] levels)
+        public LevelCreator(LifetimeScope gameScope, LevelsContent levelsContent)
         {
             _gameScope = gameScope;
-            _levels = levels;
+            _levels = levelsContent.Levels;
         }
         
         public void Initialize()

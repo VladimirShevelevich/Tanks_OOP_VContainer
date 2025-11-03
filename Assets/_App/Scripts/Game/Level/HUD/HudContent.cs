@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Content;
+using UnityEngine;
 
 namespace Game.Level.HUD
 {
     [CreateAssetMenu(fileName = "HudContent", menuName = "Content/HUD")]
-    public class HudContent : ScriptableObject
+    public class HudContent : BaseContent
     {
         [field: SerializeField] public GameObject HudPrefab { get; private set; }
     }

@@ -30,13 +30,7 @@ namespace Game
         private void RegisterContent(IContainerBuilder builder)
         {
             builder.RegisterInstance(_contentProvider);
-            builder.RegisterInstance(_contentProvider.Levels);
-            builder.RegisterInstance(_contentProvider.PlayerContent);
-            builder.RegisterInstance(_contentProvider.ProjectileContent);
-            builder.RegisterInstance(_contentProvider.EnemyContent);
-            builder.RegisterInstance(_contentProvider.HudContent);
-            builder.RegisterInstance(_contentProvider.PopupsContent);
-            builder.RegisterInstance(_contentProvider.HealthBarContent);
+            _contentProvider.RegisterContent(builder);
         }
 
         private void RegisterInitializable(IContainerBuilder builder)
