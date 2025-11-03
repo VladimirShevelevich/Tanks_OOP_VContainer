@@ -1,5 +1,4 @@
-﻿using Game.Analytics;
-using Game.Level.Config;
+﻿using Game.Level.Config;
 using Game.Level.Player;
 using Game.Level.Scores;
 using Game.Popups;
@@ -68,9 +67,7 @@ namespace Game.Level.LevelState
 
         private void CreateResultPopup(PopupType popupType)
         {
-            var popupDisposer = new CompositeDisposable();
-            AddDisposable(popupDisposer);
-            _popupsService.CreatePopup(popupType, popupDisposer);
+            _popupsService.CreatePopup(popupType);
         }
     }
 }

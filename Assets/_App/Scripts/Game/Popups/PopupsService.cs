@@ -17,7 +17,7 @@ namespace Game.Popups
             _popupsFactory = popupsFactory;
         }
         
-        public void CreatePopup(PopupType popupType, CompositeDisposable disposer = null)
+        public void CreatePopup(PopupType popupType)
         {
             if (_openedPopupType == popupType)
             {
@@ -25,7 +25,7 @@ namespace Game.Popups
                 return;
             }
             
-            var popup = _popupsFactory.Create(popupType, disposer);
+            var popup = _popupsFactory.Create(popupType);
             _openedPopupType = popupType;
             AddDisposable(popup.OnClosed.Subscribe(OnPopupClosed));
         }

@@ -439,4 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d16a70eee945c9b8762583cc618206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _root: {fileID: 1828639390608481543}
+  _settings:
+    <CloseDuration>k__BackingField: 0
   _nextButton: {fileID: 6404880338420403051}

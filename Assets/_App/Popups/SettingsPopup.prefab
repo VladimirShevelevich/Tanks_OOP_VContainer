@@ -224,6 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _root: {fileID: 2343749200485500090}
+  _settings:
+    <CloseDuration>k__BackingField: 0.2
   _closeButton: {fileID: 1572661169745858901}
 --- !u!1 &5477476670405007854
 GameObject:

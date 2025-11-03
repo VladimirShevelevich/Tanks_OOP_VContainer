@@ -20,18 +20,17 @@ namespace Game.Popups
             _objectResolver = objectResolver;
         }
         
-        public Popup Create(PopupType popupType, CompositeDisposable disposer = null)
+        public Popup Create(PopupType popupType)
         {
-            var popup = CreateView(popupType, disposer);
+            var popup = CreateView(popupType);
             _objectResolver.Inject(popup);
             return popup;
         }
         
-        private Popup CreateView(PopupType popupType, CompositeDisposable disposer)
+        private Popup CreateView(PopupType popupType)
         {
             var prefab = _popupsContent.PopupByType(popupType);
             var screen = Object.Instantiate(prefab, _uiCanvas.transform);
-            disposer?.Add(new GameObjectDisposer(screen.gameObject));
             return screen;
         }
 

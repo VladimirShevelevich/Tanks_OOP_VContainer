@@ -26,6 +26,7 @@ namespace Game.Level.LevelState
         private void HandleNextLevelClick()
         {
             _levelCreator.LoadNextLevel();
+            Close();
         }
 
     }

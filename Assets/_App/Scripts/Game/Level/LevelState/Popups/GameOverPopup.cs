@@ -26,6 +26,7 @@ namespace Game.Level.LevelState
         private void HandleRestartLevelClick()
         {
             _levelCreator.ReloadLevel();
+            Close();
         }
 
     }
